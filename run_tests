@@ -1,2 +1,0 @@
-(cd spec/js/support;jasmine-headless-webkit -c -j jasmine.yml)
-

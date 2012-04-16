@@ -1,7 +1,9 @@
 source "http://www.rubygems.org"
 
-gem "guard"
-gem "guard-process"
-gem "jasmine"
-gem "jasmine-headless-webkit"
+group :test do
+  gem "guard"
+  gem "guard-process"
+  gem "jasmine"
+  gem "jasmine-headless-webkit"
+end
 
