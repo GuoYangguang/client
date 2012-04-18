@@ -1,26 +1,16 @@
-#jhw will use this file to generate a html file,and 
-#execute it in a browser like env.
-
-#specify the app's depending libs and app files in order;
-#note: .coffee files are compiled dynamically, here,
-#we don't need to manually generate .js files.
 src_files:
   - "lib/jquery-min.js"
   - "lib/underscore.js"
   - "lib/backbone-min.js"
   - "js/*.coffee"
 
-#specify helper files and test libs in order; 
-#note: the jasmine lib is loaded dynamically from jasmine gem.
 helpers:
   - "lib/sinon-1.3.2.js"
   - "lib/jasmine-jquery-1.3.1.js"
 
-#specify the test files
 spec_files:
   - "js/*.coffee"
 
-#the dir is relative to the project root
 src_dir: "public/js"
 
 spec_dir: "spec/js"
