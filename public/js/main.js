@@ -19,6 +19,8 @@ require.config({
 //cs! load itself and coffeescript using base path
 //cs! is a resource loading plugin
 require(["cs!router"], function(AppRouter){
+//Backbone history depends on window.history
+//when document is ready, window object is ready
   $(document).ready(function(){
     var app = new AppRouter(); 
     Backbone.history.start();
