@@ -4,7 +4,7 @@ require.config({
 
 //the root path to use for all module lookups, this is most important
 //require is actuallly a script tag,and public path is configured on server
-  baseUrl: "js",
+  baseUrl: "public/js",
 
 //the mappings for module names not found directly under baseUrl.
 //The path settings are assumed to be relative to baseUrl
@@ -19,6 +19,8 @@ require.config({
 //cs! load itself and coffeescript using base path
 //cs! is a resource loading plugin
 require(["cs!router"], function(AppRouter){
-  var app = new AppRouter(); 
-  Backbone.history.start();
+  $(document).ready(function(){
+    var app = new AppRouter(); 
+    Backbone.history.start();
+  });
 });
