@@ -13,7 +13,9 @@ require.config({
 
 //An array of module/file names to load immediately, before tracing down 
 //any other dependencies 
-  priority: ["lib/jquery-min", "lib/underscore", "lib/backbone-min"]
+//order! load itself using base path
+//order! load libs in order 
+  priority: ["order!lib/jquery-min", "order!lib/underscore", "order!lib/backbone-min"]
 });
 
 //cs! load itself and coffeescript using base path
