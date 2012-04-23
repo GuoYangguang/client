@@ -11,4 +11,4 @@ define ->
     
     listBoards: ->
       $("#list-boards").html("<li>board1</li><li>board2</li>")
-       
+
