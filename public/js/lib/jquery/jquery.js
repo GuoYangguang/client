@@ -1,1 +1,3 @@
-require(["order!public/js/lib/jquery/jquery-min.js"]);
+define(["order!public/js/lib/jquery/jquery-min.js"], function(){
+  return $.noConflict();
+});

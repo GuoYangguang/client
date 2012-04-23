@@ -1,4 +1,4 @@
-define ->
+define ["jquery", "underscore", "backbone"], ($, _, Backbone)->
   class AppRouter extends Backbone.Router 
     routes: {
       "": "showWorkspace" 

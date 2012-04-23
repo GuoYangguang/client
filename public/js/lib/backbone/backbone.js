@@ -1,6 +1,5 @@
-require(["order!public/js/lib/backbone/backbone-min.js"]); 
+define(["order!public/js/lib/backbone/backbone-min.js"], function(){
   //the noConflict() prevents the sharing on global
-  //$.noConflict();
-  //_.noConflict();
-  //return Backbone.noConflict();}
+  return Backbone.noConflict();
+});
 

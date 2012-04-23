@@ -8,12 +8,6 @@
       "backbone": "lib/backbone/backbone"
     },
     priority: ["jquery", "underscore", "backbone"]
-  }, ["cs!router"], function(AppRouter) {
-    return $(document).ready(function() {
-      var app;
-      app = new AppRouter();
-      return Backbone.history.start();
-    });
-  });
+  }, ["cs!app"]);
 
 }).call(this);

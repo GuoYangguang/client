@@ -28,8 +28,4 @@ require({
     "backbone": "lib/backbone/backbone"
   },
   priority: ["jquery", "underscore", "backbone"]
-},["cs!router"], (AppRouter) ->
-  $(document).ready ->
-    app = new AppRouter() 
-    Backbone.history.start()
-) 
+},["cs!app"])
