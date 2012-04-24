@@ -1,15 +1,17 @@
 src_files:
-  - libs/require.js
-  - libs/jquery-min.js
+  - "libs/require.js"
+  - "libs/jquery-min.js"
+  - "libs/underscore-min.js"
+  - "libs/backbone-min.js"
   
 helpers:
-  - helpers/*.js
+  - "helpers/*.js"
 
 spec_files:
-  - board/*_spec.coffee
+  - "board/*_spec.coffee"
 
-src_dir: public/js
+src_dir: "public/js"
 
-spec_dir: spec/js
+spec_dir: "spec/js"
 
-runner_output: public/js/spec_output.html
+runner_output: "public/js/spec_output.html"
