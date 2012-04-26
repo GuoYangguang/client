@@ -1,4 +1,5 @@
 src_files:
+  #jasmine-jquery.js depends on globla $?
   - "libs/require-jquery.js"
   - "main.js"
 
