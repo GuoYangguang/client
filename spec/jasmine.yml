@@ -1,0 +1,15 @@
+src_files:
+  - "libs/require-jquery.js"
+  - "main.js"
+
+spec_files: 
+  - "**/*_spec.coffee"
+
+helpers:
+  - "support/sinon.js"
+  - "support/jasmine-jquery.js"
+
+src_dir: "."
+spec_dir: "../spec"
+
+runner_output: "spec_output.html"
