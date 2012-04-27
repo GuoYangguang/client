@@ -1,15 +1,16 @@
-define ["jquery", "underscore", "backbone", "text!../templates/test.html"], 
-($, _, Backbone, html) ->
+define ["jquery", "underscore", "backbone", "text!../templates/boards.html", "cs!board/model"], 
+($, _, Backbone, html, Board) ->
   class Router extends Backbone.Router
     routes: {
       "": "showWorkspace",
       "boards": "listBoards"
     }
 
-    jData: {who: "Gyg", where: "http://www.google.com"}
     showWorkspace: ->
-      $("#result").text("workspace1 has been updated with data")
+      $("#workspace").text("workspace1 has been updated with data")
     
     listBoards: ->
-      j = $(html).directives({"a": "who", "a@href": "where"})
-      $("#list-boards").html(j.render({who: "Gyg", where: "http://www.google.com"}))
+      board1 = new Board({name: 'gyg', age: "30"})
+      board2 = new Board()
+      console.log JSON.stringify board1
+      console.log JSON.stringify board2
