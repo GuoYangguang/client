@@ -7,8 +7,9 @@ spec_files:
   - "**/*_spec.coffee"
 
 helpers:
-  - "support/sinon.js"
-  - "support/jasmine-jquery.js"
+  - "support/sinon/sinon.js"
+  - "support/jasmine/jasmine-jquery.js"
+  - "support/jasmine/jasmine-sinon.js"
 
 src_dir: "."
 spec_dir: "../spec"
