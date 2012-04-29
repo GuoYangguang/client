@@ -7,7 +7,7 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view"], ($, _, Backb
 
     listBoards: (boards) ->
       boards.each(this.appendBoard)
-      $("#boards").append(this.el)
+      $("#boards").after(this.el)
     
     appendBoard: (board) ->
       boardView = new BoardView({model: board})

@@ -1,5 +1,4 @@
-define ["jquery", "underscore", "backbone", "text!../templates/boards.html", "cs!board/model"], 
-($, _, Backbone, html, Board) ->
+define ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
   class Router extends Backbone.Router
     routes: {
       "": "showWorkspace",
@@ -10,7 +9,4 @@ define ["jquery", "underscore", "backbone", "text!../templates/boards.html", "cs
       $("#workspace").text("workspace1 has been updated with data")
     
     listBoards: ->
-      board1 = new Board({name: 'gyg', age: "30"})
-      board2 = new Board()
-      console.log JSON.stringify board1
-      console.log JSON.stringify board2
+      $("#boards").after("<ul><li>board1</li></ul>")      

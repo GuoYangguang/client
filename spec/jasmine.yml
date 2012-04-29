@@ -8,8 +8,7 @@ spec_files:
 
 helpers:
   - "support/sinon/sinon.js"
-  - "support/jasmine/jasmine-jquery.js"
-  - "support/jasmine/jasmine-sinon.js"
+  - "support/jasmine-jquery.js"
 
 src_dir: "."
 spec_dir: "../spec"
