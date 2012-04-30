@@ -1,4 +1,4 @@
-define ["jquery", "underscore", "backbone", "text!../templates/board.html"], ($, _, Backbone, html) ->
+define ["jquery", "underscore", "backbone", "text!templates/board.html"], ($, _, Backbone, html) ->
   class BoardView extends Backbone.View 
     tagName: "li"
 
@@ -10,5 +10,4 @@ define ["jquery", "underscore", "backbone", "text!../templates/board.html"], ($,
       $(this.el).html(this.template)
       this
     
-    
-     
+  console.log html 
