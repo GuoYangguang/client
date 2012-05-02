@@ -9,8 +9,14 @@ define ["jquery", "underscore", "backbone", "cs!board/wcollection", "cs!board/co
     showWorkspace: ->
       workspaces = new Workspaces()
       workspaces.fetch()
-      $("#workspace").text("workspace1 has been updated with data")
+      workspace = workspaces.get(1)
+      console.log workspace
+      $("#workspace").text(workspace.get("name"))
+      $("#workspace_id").val(workspace.id)
     
     listBoards: ->
-      boards = new Boards()
-      $("#boards").after("<ul><li>board1</li></ul>")      
+      workspace_id = $("#workspace_id").val()
+      boards = new Boards({workspace_id: workspace_id})
+      console.log boards
+      boards.fetch()
+      #$("#boards").after("<ul><li>board1</li></ul>")      
