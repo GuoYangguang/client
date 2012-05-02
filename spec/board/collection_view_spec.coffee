@@ -24,6 +24,5 @@ require ["cs!board/collection_view", "cs!board/collection"], (BoardsView, Boards
         boards.fetch()
         this.server.respond()
         expect(boards.length).toEqual 2
-        #boards.each (board)-> console.log board
-
+        expect(boardsView.listBoards.calledOnce).toBeTruthy()
         boardsView.listBoards.restore()
