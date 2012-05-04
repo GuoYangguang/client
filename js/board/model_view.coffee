@@ -1,13 +1,11 @@
-define ["jquery", "underscore", "backbone", "text!templates/board.html"], ($, _, Backbone, html) ->
+define ["jquery", "underscore", "backbone", "text!templates/board.html", "libs/pure/pure"], 
+($, _, Backbone, html) ->
   class BoardView extends Backbone.View 
     tagName: "li"
 
-    template: $(html)
-    
     render: ->
-      this.template.directives({"span": "name"})
-        .render(JSON.stringify(this.model))
-      $(this.el).html(this.template)
+      
+                      
+      $(this.el).html(template)
       this
     
-  console.log html 

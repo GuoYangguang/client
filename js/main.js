@@ -2,8 +2,7 @@ require({
   paths: {
           jquery: "libs/jquery/jquery",
       underscore: "libs/underscore/underscore",
-        backbone: "libs/backbone/backbone",
-        pure: "libs/pure/pure"
+        backbone: "libs/backbone/backbone"
   },
-  priority: ["jquery", "underscore", "backbone", "pure"],
+  priority: ["jquery", "underscore", "backbone"],
 }, ["cs!app"]);

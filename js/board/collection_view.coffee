@@ -6,11 +6,12 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view"], ($, _, Backb
       this.collection.bind("reset", this.listBoards, this)
 
     listBoards: (boards) ->
-      boards.each(this.appendBoard)
+      ulObject = $(this.el) 
+      boards.each (board)->
+        boardView = new BoardView({model: board})
+        ulObject.append(boardView.render().el)   
       $("#boards").after(this.el)
-    
-    appendBoard: (board) ->
-      boardView = new BoardView({model: board})
-      $(this.el).append(boardView.render().el)
+      
+      
      
        

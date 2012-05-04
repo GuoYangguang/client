@@ -90,3 +90,16 @@ $(document).ready ->
   window.Todos = new TodoCollection()
   console.log Todos
   Todos.fetch()
+
+
+#def current_user
+#        #return false unless session[:user_id] && session[:entity_id]
+#        user = Belinkr::User::Member.new(first: 'user', last: '111', entity_id: 1)
+#        user.save
+#        Belinkr::User::Collection.new(entity_id: user.entity_id).add user
+#        session[:user_id] = user.id
+#        session[:entity_id] = user.entity_id 
+#        @current_user ||= Belinkr::User::Member.new(
+#           id: session[:user_id], entity_id: session[:entity_id]
+#        )
+#      end

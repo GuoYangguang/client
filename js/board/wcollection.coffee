@@ -6,4 +6,8 @@ define ["jquery", "underscore", "backbone", "cs!board/wmodel"],
     
     url: "/workspaces" 
  
-    
+    initialize: ->    
+      this.bind "reset", ->
+        workspace = this.get(1)
+        $("#workspace").text(workspace.get("name"))
+        $("#workspace_id").val(workspace.id)
