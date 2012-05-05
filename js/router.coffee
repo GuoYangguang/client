@@ -11,9 +11,8 @@ define ["jquery", "underscore", "backbone", "cs!board/wcollection",
       workspaces = new Workspaces()
       workspaces.fetch()
       
-    
     listBoards: ->
       workspace_id = $("#workspace_id").val()
       boards = new Boards({workspace_id: workspace_id})
-      boardsView = new BoardsView({collection: boards})
+      boardsView = new BoardsView({collection: boards}) 
       boards.fetch()
