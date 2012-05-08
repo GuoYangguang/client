@@ -6,9 +6,9 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view"],
     initialize: ->
       this.collection.bind("reset", this.listBoards, this)
 
-    listBoards: (boards) ->
+    listBoards: ->
       ulObject = $(this.el) 
-      boards.each (board)->
+      this.collection.each (board)->
         boardView = new BoardView({model: board})
         ulObject.append(boardView.render().el)   
         boardView.insertData()

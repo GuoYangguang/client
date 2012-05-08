@@ -9,11 +9,11 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
       this.boardView = new BoardView(model: this.board)
     
     describe "el", ->
-      it "sets root tag to be 'li'", ->
+      it "sets el's root tag to be 'li'", ->
         expect(this.boardView.tagName).toEqual "li"
 
     describe "render", ->
-      it "renders the board template into el ", ->
+      it "renders the 'board' template into el ", ->
         this.boardView.render()
         expect($(this.boardView.el).html()).toEqual(html)
      
