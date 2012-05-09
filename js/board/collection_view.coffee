@@ -1,19 +1,35 @@
-define ["jquery", "underscore", "backbone", "cs!board/model_view"],
-($, _, Backbone, BoardView) ->
+define ["jquery", "underscore", "backbone", "cs!board/model_view", 
+"text!templates/boards.html"], ($, _, Backbone, BoardView, html) ->
+
   class BoardsView extends Backbone.View
-    tagName: "ul"
+    tagName: "div"
     
     initialize: ->
-      this.collection.bind("reset", this.listBoards, this)
+      $(this.el).append(html)
+      this.collection.bind("reset", this.render, this)
+      this.collection.bind("add", this.appendBoard, this)
+    
+    events: {
+      'click #createBoard': 'createBoard' 
+    
+    }
 
     listBoards: ->
-      ulObject = $(this.el) 
+      boardsView = this
       this.collection.each (board)->
-        boardView = new BoardView({model: board})
-        ulObject.append(boardView.render().el)   
-        boardView.insertData()
-      $("#boards").after(ulObject)
-      
-      
-     
-       
+        boardsView.appendBoard board
+
+    render: ->
+      this.listBoards()
+      $("#boards").after(this.el)
+      this
+    
+    createBoard: ->
+      value = $('#newBoard').val()
+      this.collection.create({name: value})
+
+    appendBoard: (board)->
+      ul = $(this.el).find('ul')
+      boardView = new BoardView({model: board})
+      ul.append(boardView.render().el)
+      boardView.insertData()
