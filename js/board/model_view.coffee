@@ -1,10 +1,10 @@
 define ["jquery", "underscore", "backbone", "text!templates/board.html"], 
-($, _, Backbone, html) ->
+($, _, Backbone, boardHtml) ->
   class BoardView extends Backbone.View 
-    tagName: "li"
+    tagName: "div"
 
     render: -> 
-      $(this.el).html(html)
+      $(this.el).html(boardHtml)
       this
 
     insertData: ->
