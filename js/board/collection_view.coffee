@@ -21,8 +21,8 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
         boardsView.appendBoard board
 
     render: ->
-      this.listBoards()
       $("#boards").after(this.el)
+      this.listBoards()
       this
     
     createBoard: ->
@@ -38,7 +38,7 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
       helper.dealErrors("#createBoards", response)
 
     appendBoard: (board)->
-      ul = $(this.el).find('ul')
+      ul = $(this.el).find('ul#listBoards')
       boardView = new BoardView({model: board})
-      ul.append(boardView.render().el)
-      boardView.insertData()
+      ul.append(boardView.el)
+      boardView.render()
