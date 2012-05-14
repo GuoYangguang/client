@@ -5,9 +5,13 @@ require ["cs!board/collection", "cs!board/model"],
     
     beforeEach ->
       this.boards = new Boards([], {workspace_id: 1}) 
-      this.data = [{"id":1,"name":"board1","entity_id":1,"workspace_id":1,"user_id":1,
-      "created_at":"2012-05-07 19:48:10","updated_at":"2012-05-07 19:48:10"},        
+
+      this.data = [{"id":1,"name":"board1","entity_id":1,"workspace_id":1,
+      "user_id":1,"created_at":"2012-05-07 19:48:10",
+      "updated_at":"2012-05-07 19:48:10"},
       {"id":2,"name":"board2","entity_id":1,"workspace_id":1,"user_id":1,
+      "created_at":"2012-05-06 19:48:10","updated_at":"2012-05-07 19:48:10"},
+      {"id":3,"name":"board3","entity_id":1,"workspace_id":1,"user_id":1,
       "created_at":"2012-05-08 19:48:10","updated_at":"2012-05-07 19:48:10"}]
    
     describe "model", ->
@@ -27,10 +31,10 @@ require ["cs!board/collection", "cs!board/model"],
         models = new Array()
         for e in this.data by 1
           models.push new Board(e)
-        this.boards.add(models) 
         
-        
-            
+        boards = new Boards(models, {workspace_id: 1})        
+           
+        expect(boards.pluck("name")).toEqual ["board2", "board1", "board3"]
     
       
   
