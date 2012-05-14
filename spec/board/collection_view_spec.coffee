@@ -69,7 +69,43 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
       it "appends the 'boards' template into el", ->
         boardsView = new BoardsView({collection: this.boards})
         expect($(boardsView.el).html()).toEqual html
+     
+
+    describe "fetchBoards", ->
+      it "triggers success callback if the server returns 200 ", -> 
+        this.server.respondWith(
+          "GET",
+          "/workspaces/1/boards",
+          [200, {"Content-Type": "application/json"}, JSON.stringify(this.data)]
+        ) 
+        sinon.spy(BoardsView.prototype, "successFetch")
+        boardsView = new BoardsView({collection: this.boards})
+        
+        boardsView.fetchBoards()
+        this.server.respond()
+
+        expect(this.boards.length).toEqual 2
+        expect(BoardsView.prototype.successFetch.calledOnce).toBeTruthy()
+        
+        BoardsView.prototype.successFetch.restore()
       
+      it "triggers error callback if the server returns 4**", -> 
+        this.server.respondWith(
+          "GET",
+          "/workspaces/1/boards",
+          [404, {}, ""]
+        ) 
+        sinon.spy(BoardsView.prototype, "errorFetch")
+        boardsView = new BoardsView({collection: this.boards}) 
+       
+        boardsView.fetchBoards()
+        this.server.respond()
+
+        expect(this.boards.length).toEqual 0
+        expect(BoardsView.prototype.errorFetch.calledOnce).toBeTruthy()
+
+        BoardsView.prototype.errorFetch.restore()
+        
     describe "render", ->
       it "inserts the boards collection into page", ->
         models = new Array()
@@ -85,14 +121,14 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         
     describe "createBoard", ->
-      it "invokes the success callback if the server returns the 201", ->
+      it "invokes the success callback if the server returns 201", ->
         this.server.respondWith(
           "POST",
           "/workspaces/1/boards",
           [201, {"Content-Type": "application/json"}, 
           JSON.stringify this.data[0]]
         )
-        sinon.spy(BoardsView.prototype, "success")
+        sinon.spy(BoardsView.prototype, "successCreate")
         boardsView = new BoardsView({collection: this.boards})
         expect(this.boards.length).toEqual 0 
         
@@ -100,28 +136,27 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         this.server.respond()
 
         expect(this.boards.length).toEqual 1
-        expect(BoardsView.prototype.success.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.successCreate.calledOnce).toBeTruthy()
 
-        BoardsView.prototype.success.restore()
+        BoardsView.prototype.successCreate.restore()
 
-      it "invokes the error callback if the server returns the 4**", ->
+      it "invokes the error callback if the server returns 4**", ->
         this.server.respondWith(
           "POST",
-          "/workspaces/1/boards",
+          "/workspaces/1/boards", 
           [400, {"Content-Type": "application/json"}, 
-          JSON.stringify this.invalidData]
-        )
-        sinon.spy(BoardsView.prototype, "error")
+          JSON.stringify(this.invalidData)]
+        ) 
+        sinon.spy BoardsView.prototype, "errorCreate"
         boardsView = new BoardsView({collection: this.boards})
-        expect(this.boards.length).toEqual 0 
-        
+
         boardsView.createBoard()
         this.server.respond()
 
         expect(this.boards.length).toEqual 0 
-        expect(BoardsView.prototype.error.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.errorCreate.calledOnce).toBeTruthy()
 
-        BoardsView.prototype.error.restore()
+        BoardsView.prototype.errorCreate.restore()
 
     describe "appendBoard", ->
       it "inserts a board data into 'li' tag and append it into 'ul' tag of el",

@@ -1,6 +1,6 @@
 define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
   class Helper
-    
+
     dealErrors: (showSelector, response)-> 
       $("#errors").remove()
       $(showSelector).before(errorsHtml)

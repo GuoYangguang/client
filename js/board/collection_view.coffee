@@ -14,31 +14,44 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
       'click #createBoard': 'createBoard' 
     
     }
+    
+    fetchBoards: ->
+      this.collection.fetch({wait: true, success: this.successFetch, 
+      error: this.errorFetch})
+        
+    successFetch: (collection, response) ->
+      $("errors").remove()   
 
-    listBoards: ->
-      boardsView = this
-      this.collection.each (board)->
-        boardsView.appendBoard board
+    errorFetch: (collection, response) ->
+      helper = new Helper()
+      helper.dealErrors("#boards", response)
 
     render: ->
       $("#boards").after(this.el)
       this.listBoards()
       this
-    
-    createBoard: ->
-      value = $('#newBoard').val()
-      this.collection.create({name: value}, 
-        {wait: true, success: this.success, error: this.error})
-    
-    success: (model, response)->
-      $("#errors").remove()
 
-    error: (model, response)->
-      helper = new Helper()        
-      helper.dealErrors("#createBoards", response)
-
+    listBoards: ->
+      boardsView = this
+      this.collection.each (board)->
+        boardsView.appendBoard board
+    
     appendBoard: (board)->
       ul = $(this.el).find('ul#listBoards')
       boardView = new BoardView({model: board})
       ul.append(boardView.el)
       boardView.render()
+    
+    createBoard: ->
+      value = $('#newBoard').val()
+      this.collection.create({name: value}, 
+        {wait: true, success: this.successCreate, error: this.errorCreate})
+    
+    successCreate: (model, response)->
+      $("#errors").remove()
+
+    errorCreate: (model, response)->
+      helper = new Helper()        
+      helper.dealErrors("#createBoards", response)
+
+    
