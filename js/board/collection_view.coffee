@@ -28,12 +28,12 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
     createBoard: ->
       value = $('#newBoard').val()
       this.collection.create({name: value}, 
-        {wait: true, success: this.successCallback, error: this.errorCallback})
+        {wait: true, success: this.success, error: this.error})
     
-    successCallback: (model, response)->
+    success: (model, response)->
       $("#errors").remove()
 
-    errorCallback: (model, response)->
+    error: (model, response)->
       helper = new Helper()        
       helper.dealErrors("#createBoards", response)
 

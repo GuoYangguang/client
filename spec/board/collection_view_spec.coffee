@@ -8,6 +8,8 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
       "created_at":"2012-05-07 19:48:10","updated_at":"2012-05-07 19:48:10"},        
       {"id":2,"name":"board2","entity_id":1,"workspace_id":1,"user_id":1,
       "created_at":"2012-05-08 19:48:10","updated_at":"2012-05-07 19:48:10"}]
+
+      this.invalidData = {"name":"","entity_id":1,"workspace_id":1,"user_id":1}
       
       this.boards = new Boards([], {workspace_id: 1})
 
@@ -40,6 +42,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         expect(this.boards.length).toEqual 2
         expect(BoardsView.prototype.render.calledOnce)
           .toBeTruthy()
+
         BoardsView.prototype.render.restore()
 
       it "binds a add event to the collection", ->
@@ -82,16 +85,47 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         
     describe "createBoard", ->
-      it "creates a board", ->
+      it "invokes the success callback if the server returns the 201", ->
+        this.server.respondWith(
+          "POST",
+          "/workspaces/1/boards",
+          [201, {"Content-Type": "application/json"}, 
+          JSON.stringify this.data[0]]
+        )
+        sinon.spy(BoardsView.prototype, "success")
         boardsView = new BoardsView({collection: this.boards})
         expect(this.boards.length).toEqual 0 
         
         boardsView.createBoard()
+        this.server.respond()
 
         expect(this.boards.length).toEqual 1
+        expect(BoardsView.prototype.success.calledOnce).toBeTruthy()
+
+        BoardsView.prototype.success.restore()
+
+      it "invokes the error callback if the server returns the 4**", ->
+        this.server.respondWith(
+          "POST",
+          "/workspaces/1/boards",
+          [400, {"Content-Type": "application/json"}, 
+          JSON.stringify this.invalidData]
+        )
+        sinon.spy(BoardsView.prototype, "error")
+        boardsView = new BoardsView({collection: this.boards})
+        expect(this.boards.length).toEqual 0 
+        
+        boardsView.createBoard()
+        this.server.respond()
+
+        expect(this.boards.length).toEqual 0 
+        expect(BoardsView.prototype.error.calledOnce).toBeTruthy()
+
+        BoardsView.prototype.error.restore()
 
     describe "appendBoard", ->
-      it "inserts a board data into 'li' tag and append it into 'ul' tag of el", ->
+      it "inserts a board data into 'li' tag and append it into 'ul' tag of el",
+      ->
         boardsView = new BoardsView({collection: this.boards})
         board = new Board(this.data[0])
         
