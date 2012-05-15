@@ -9,5 +9,5 @@ define ["jquery", "underscore", "backbone", "cs!board/wmodel"],
     initialize: ->    
       this.bind "reset", ->
         workspace = this.get(1)
-        $("#workspace").text(workspace.get("name"))
-        $("#boards").attr("href", "#workspaces/#{workspace.id}/boards")
+        $("h1").text(workspace.get("name"))
+        $("#fetchBoards").attr("href", "#workspaces/#{workspace.id}/boards")

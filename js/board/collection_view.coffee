@@ -20,14 +20,14 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
       error: this.errorFetch})
         
     successFetch: (collection, response) ->
-      $("errors").remove()   
+      $("#errors").remove()   
 
     errorFetch: (collection, response) ->
       helper = new Helper()
       helper.dealErrors("#boards", response)
 
     render: ->
-      $("#boards").after(this.el)
+      $("#boards").html(this.el)
       this.listBoards()
       this
 
@@ -52,6 +52,6 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
 
     errorCreate: (model, response)->
       helper = new Helper()        
-      helper.dealErrors("#createBoards", response)
+      helper.dealErrors("#boards p", response)
 
     
