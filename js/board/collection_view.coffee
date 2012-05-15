@@ -6,15 +6,16 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
     tagName: "div"
     
     initialize: ->
-      $(this.el).append(html)
+      $(this.el).html(html)
+      $("#boards").html(this.el)
       this.collection.bind("reset", this.render, this)
       this.collection.bind("add", this.appendBoard, this)
     
     events: {
-      'click #createBoard': 'createBoard' 
-    
+      "click #createBoard": "createBoard"
+      
     }
-    
+
     fetchBoards: ->
       this.collection.fetch({wait: true, success: this.successFetch, 
       error: this.errorFetch})
@@ -27,7 +28,6 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
       helper.dealErrors("#boards", response)
 
     render: ->
-      $("#boards").html(this.el)
       this.listBoards()
       this
 
@@ -37,9 +37,7 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
         boardsView.appendBoard board
     
     appendBoard: (board)->
-      ul = $(this.el).find('ul#listBoards')
       boardView = new BoardView({model: board})
-      ul.append(boardView.el)
       boardView.render()
     
     createBoard: ->

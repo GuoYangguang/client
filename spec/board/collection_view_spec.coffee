@@ -115,7 +115,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         boardsView = new BoardsView({collection: boards})
         
         boardsView.render()
-
+        console.log $(boardsView.el).html()
         expect($(boardsView.el).find('span:first').text())
           .toEqual this.data[0].name
 
