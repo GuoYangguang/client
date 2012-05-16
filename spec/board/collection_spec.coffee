@@ -6,24 +6,25 @@ require ["cs!board/collection", "cs!board/model"],
     beforeEach ->
       this.boards = new Boards([], {workspace_id: 1}) 
 
-      this.data = [{"id":1,"name":"board1","entity_id":1,"workspace_id":1,
-      "user_id":1,"created_at":"2012-05-07 19:48:10",
-      "updated_at":"2012-05-07 19:48:10"},
-      {"id":2,"name":"board2","entity_id":1,"workspace_id":1,"user_id":1,
-      "created_at":"2012-05-06 19:48:10","updated_at":"2012-05-07 19:48:10"},
-      {"id":3,"name":"board3","entity_id":1,"workspace_id":1,"user_id":1,
-      "created_at":"2012-05-08 19:48:10","updated_at":"2012-05-07 19:48:10"}]
+      this.data = [
+        {"id":1,"name":"board1","entity_id":1,"workspace_id":1,"user_id":1,
+        "created_at":"2012-05-07 19:48:10","updated_at":"2012-05-07 19:48:10"},
+        {"id":2,"name":"board2","entity_id":1,"workspace_id":1,"user_id":1,
+        "created_at":"2012-05-06 19:48:10","updated_at":"2012-05-07 19:48:10"},
+        {"id":3,"name":"board3","entity_id":1,"workspace_id":1,"user_id":1,
+        "created_at":"2012-05-08 19:48:10","updated_at":"2012-05-07 19:48:10"}
+      ]
    
     describe "model", ->
       it "sets 'Board' as it's model", ->
         expect(this.boards.model).toEqual(Board)
   
     describe "initialize", ->
-      it "sets the 'workspace_id' property of colletion objects", ->
+      it "sets the 'workspace_id' property", ->
         expect(this.boards.workspace_id).toBeDefined()
 
     describe "url", ->
-      it "sets url by the initialization", ->
+      it "sets url by the 'workspace_id' property", ->
         expect(this.boards.url()).toEqual("/workspaces/1/boards") 
  
     describe "comparator", ->
