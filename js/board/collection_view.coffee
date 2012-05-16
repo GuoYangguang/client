@@ -1,13 +1,12 @@
 define ["jquery", "underscore", "backbone", "cs!board/model_view", 
 "text!templates/boards.html", "cs!helper"], 
-($, _, Backbone, BoardView, html, Helper) ->
+($, _, Backbone, BoardView, boardsHtml, Helper) ->
 
   class BoardsView extends Backbone.View
     tagName: "div"
     
     initialize: ->
-      $(this.el).html(html)
-      $("#boards").html(this.el)
+      $(this.el).html(boardsHtml)
       this.collection.bind("reset", this.render, this)
       this.collection.bind("add", this.appendBoard, this)
     
@@ -29,6 +28,7 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
 
     render: ->
       this.listBoards()
+      $("#boards").html(this.el)
       this
 
     listBoards: ->
@@ -38,8 +38,8 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
     
     appendBoard: (board)->
       boardView = new BoardView({model: board})
-      boardView.render()
-    
+      $(this.el).find("ul#listBoards").append(boardView.render().el)
+
     createBoard: ->
       value = $('#newBoard').val()
       this.collection.create({name: value}, 

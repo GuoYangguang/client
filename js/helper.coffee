@@ -1,16 +1,18 @@
 define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
   class Helper
+    
+    errorsTemplate: $(errorsHtml)
 
     dealErrors: (showSelector, response)-> 
       $("#errors").remove()
-      $(showSelector).before(errorsHtml)
-
+    
       status = response.status
       switch status
         when 404
           errorsObj = {"errors": "not allowed or resources not exist."}
           directives = {"span": "errors"}
-          $("#errors").render(errorsObj, directives)
+          htmlWithData = this.errorsTemplate.render(errorsObj, directives)
+          $(showSelector).before(htmlWithData)
         when 400
           responseText = JSON.parse(response.responseText)
           errorsObj = {"errors": new Array()}
@@ -24,4 +26,5 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
               }
             }
           }
-          $("#errors").render(errorsObj, directives)
+          htmlWithData = this.errorsTemplate.render(errorsObj, directives)
+          $(showSelector).before(htmlWithData)
