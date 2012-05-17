@@ -3,17 +3,22 @@
   width: 25%;
 }
 
+.board{
+  padding: 5px;
+}
+
 #listBoards{
   list-style-type: none;
 }
 
-.board{
+.boardName{
   cursor: pointer;
 }
 
 .deleteBoard{
   display: none;
-  padding-left: 20%;
+  cursor: pointer;
+  margin-left: 30%;
 }
 
 .colorBoard{

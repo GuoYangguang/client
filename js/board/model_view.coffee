@@ -6,9 +6,10 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html"],
     template: $(boardHtml)
      
     events: {
-      "click .board": "showBoard",
+      "click .boardName": "showBoard",
       "mouseover .board": "showMenu",
       "mouseout .board": "hideMenu",
+      "click .deleteBoard": "confirm"
     }
 
     showMenu: ->
@@ -22,6 +23,14 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html"],
     showBoard: ->
       console.log "clicking..."
       
+    confirm: ->
+      v = confirm("Are you sure to delete it?")
+      console.log v 
+    
+    deleteBoard: ->
+      this.model.destroy({wait: true, success: this.successDel})
+
+    successDel: -> 
 
     render: -> 
       data = this.model.toJSON()
