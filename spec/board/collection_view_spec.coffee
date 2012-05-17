@@ -117,10 +117,10 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         boardsView = new BoardsView({collection: boards})
         
         boardsView.listBoards()
-        expect($(boardsView.el).find('ul span:eq(0)').text())
+        expect($(boardsView.el).find('ul li:eq(0) span:eq(0)').text())
           .toEqual this.data[0].name
 
-        expect($(boardsView.el).find('ul span:eq(1)').text())
+        expect($(boardsView.el).find('ul li:eq(1) span:eq(0)').text())
           .toEqual this.data[1].name
 
     describe "appendBoard", ->

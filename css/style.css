@@ -1,0 +1,21 @@
+
+#boards{
+  width: 25%;
+}
+
+#listBoards{
+  list-style-type: none;
+}
+
+.board{
+  cursor: pointer;
+}
+
+.deleteBoard{
+  display: none;
+  padding-left: 20%;
+}
+
+.colorBoard{
+  background-color: grey;
+}
