@@ -108,27 +108,29 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         BoardsView.prototype.errorFetch.restore()
         
-    describe "render", ->
-      it "inserts the boards collection into page", ->
+    describe "listBoards", ->
+      it "inserts a boards collection into into 'ul' node of el", ->
         models = new Array()
         for e in this.data by 1
           models.push new Board(e)
         boards = new Boards(models,{workspace_id: 1})
         boardsView = new BoardsView({collection: boards})
         
-        boardsView.render()
-        expect($(boardsView.el).find('span:first').text())
+        boardsView.listBoards()
+        expect($(boardsView.el).find('ul span:eq(0)').text())
           .toEqual this.data[0].name
-    
+
+        expect($(boardsView.el).find('ul span:eq(1)').text())
+          .toEqual this.data[1].name
+
     describe "appendBoard", ->
-      it "inserts a board data into 'li' tag and append it into 'ul' tag of el",
-      ->
+      it "appends a board into 'ul' node of el", ->
         boardsView = new BoardsView({collection: this.boards})
         board = new Board(this.data[0])
         
         boardsView.appendBoard(board)
 
-        expect($(boardsView.el).find("ul li span:first").text())
+        expect($(boardsView.el).find("ul span:first").text())
           .toEqual this.data[0].name
         
     describe "createBoard", ->
