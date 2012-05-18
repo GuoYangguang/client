@@ -4,6 +4,7 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
 
     beforeEach ->
       this.server = sinon.fakeServer.create()
+      
       this.data = {
         "id":1,"name":"board1","entity_id":1,"workspace_id":1,"user_id":1,
         "created_at":"2012-05-07 19:48:10","updated_at":"2012-05-07 19:48:10"
@@ -28,7 +29,7 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
 
         expect($(this.boardView.el).find("span:first").text())
           .toEqual this.data.name
-
+     
     describe "deleteBoard", ->    
       it "triggers the success callback if deleting the board successfully", ->
         this.server.respondWith(
@@ -36,12 +37,29 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
           "/workspaces/1/boards/1",
           [204, {}, ""]
         )
-        sinon.spy(this.boardView.prototype, "successDel")
+        sinon.spy(BoardView.prototype, "successDel")
 
         this.boardView.deleteBoard() 
         this.server.respond()
 
-        expect(this.boardView.prototype.successDel.calledOnce).toBeTruthy()
+        expect(BoardView.prototype.successDel.calledOnce).toBeTruthy()
 
-        this.boardView.prototype.successDel.restore()
+        BoardView.prototype.successDel.restore()
+      
+      it "triggers the error callback if failing to delete the board", ->
+         this.server.respondWith(
+           "DELETE", 
+           "/workspaces/1/boards/1",
+           [404, {}, ""]
+         )
+         sinon.spy(BoardView.prototype, "errorDel")
+
+         this.boardView.deleteBoard()
+         this.server.respond()
+         
+         expect(BoardView.prototype.errorDel.calledOnce).toBeTruthy()
+         
+         BoardView.prototype.errorDel.restore()
+    
+         
 

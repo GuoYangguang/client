@@ -11,3 +11,4 @@ define ["jquery", "underscore", "backbone", "cs!board/wmodel"],
         workspace = this.get(1)
         $("h1").text(workspace.get("name"))
         $("#fetchBoards").attr("href", "#workspaces/#{workspace.id}/boards")
+        $("#fetchBoards").attr("data-workspace", workspace.id)

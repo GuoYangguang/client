@@ -4,7 +4,7 @@ require ["cs!board/collection", "cs!board/model"],
   describe "Boards", -> 
     
     beforeEach ->
-      this.boards = new Boards([], {workspace_id: 1}) 
+      this.boards = new Boards() 
 
       this.data = [
         {"id":1,"name":"board1","entity_id":1,"workspace_id":1,"user_id":1,
@@ -19,13 +19,9 @@ require ["cs!board/collection", "cs!board/model"],
       it "sets 'Board' as it's model", ->
         expect(this.boards.model).toEqual(Board)
   
-    describe "initialize", ->
-      it "sets the 'workspace_id' property", ->
-        expect(this.boards.workspace_id).toBeDefined()
-
     describe "url", ->
       it "sets url by the 'workspace_id' property", ->
-        expect(this.boards.url()).toEqual("/workspaces/1/boards") 
+        expect(this.boards.url()).toEqual("/workspaces/undefined/boards") 
  
     describe "comparator", ->
       it "sorts the collection by the model's 'created_at' attribute", ->
@@ -33,7 +29,7 @@ require ["cs!board/collection", "cs!board/model"],
         for e in this.data by 1
           models.push new Board(e)
         
-        boards = new Boards(models, {workspace_id: 1})        
+        boards = new Boards(models)        
            
         expect(boards.pluck("name")).toEqual ["board2", "board1", "board3"]
     
