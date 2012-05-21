@@ -4,6 +4,9 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
   class BoardView extends Backbone.View 
     tagName: "li"
     
+    initialize: (options)->
+      this.model.bind("destroy", this.destroyCal, this)
+
     template: $(boardHtml)
          
     events: {
@@ -25,8 +28,8 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
       console.log "clicking..."
       
     confirm: ->
-      v = confirm("Are you sure to delete it?")
-      this.deleteBoard()  if v
+      val = confirm("Are you sure to delete it?")
+      this.deleteBoard() if val
 
     deleteBoard: ->
       this.model.destroy({wait: true, 
@@ -38,6 +41,9 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     errorDel: (model, response)->
       helper = new Helper()  
       helper.dealErrors("#boards", response)      
+   
+    destroyCal: -> 
+      this.remove()
 
     render: -> 
       data = this.model.toJSON()

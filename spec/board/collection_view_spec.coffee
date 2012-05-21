@@ -28,7 +28,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         boardsView = new BoardsView({collection: this.boards})
         expect($(boardsView.el).html()).toEqual boardsHtml 
 
-      it "binds a reset event to the collection", -> 
+      it "binds a callback to the collection's reset event", -> 
         this.server.respondWith(
           "GET",
           "/workspaces/1/boards",  
@@ -51,7 +51,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         BoardsView.prototype.render.restore()
 
-      it "binds a add event to the collection", ->
+      it "binds a callback to the collection's add event", ->
         this.server.respondWith(
           "POST",
           "/workspaces/1/boards",

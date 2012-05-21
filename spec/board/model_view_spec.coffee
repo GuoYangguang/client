@@ -20,6 +20,22 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
       it "sets el's root tag to be 'li'", ->
         expect(this.boardView.tagName).toEqual "li"
     
+    describe "initialize", ->
+      it "binds a callback to the model's destroy event", ->
+        this.server.respondWith(
+          "DELETE",
+          "/workspaces/1/boards/1",
+          [204, {}, ""]
+        )
+        sinon.spy(BoardView.prototype, "destroyCal")
+
+        this.boardView.deleteBoard()        
+        this.server.respond()
+
+        expect(BoardView.prototype.destroyCal.calledOnce).toBeTruthy()
+
+        BoardView.prototype.destroyCal.restore()
+
     describe "template", ->
       it "initializes a jquery object with 'boardHtml' template", ->
         expect(this.boardView.template.html()).toEqual($(boardHtml).html())
