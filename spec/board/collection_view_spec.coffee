@@ -13,7 +13,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
       this.invalidData = {"name":"","entity_id":1,"workspace_id":1,"user_id":1}
       
-      this.boards = new Boards()
+      this.boards = new Boards([], {workspace_id: 1})
 
     afterEach ->
       this.server.restore()

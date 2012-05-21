@@ -10,6 +10,7 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
         "created_at":"2012-05-07 19:48:10","updated_at":"2012-05-07 19:48:10"
       }
       this.board = new Board(this.data)
+      this.board.url = "/workspaces/1/boards/1"
       this.boardView = new BoardView({model: this.board})
     
     afterEach ->
@@ -23,13 +24,6 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
       it "initializes a jquery object with 'boardHtml' template", ->
         expect(this.boardView.template.html()).toEqual($(boardHtml).html())
       
-    describe "render", ->
-      it "inserts 'template' with the model data into 'el'", ->
-        this.boardView.render()
-
-        expect($(this.boardView.el).find("span:first").text())
-          .toEqual this.data.name
-     
     describe "deleteBoard", ->    
       it "triggers the success callback if deleting the board successfully", ->
         this.server.respondWith(
@@ -62,4 +56,9 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
          BoardView.prototype.errorDel.restore()
     
          
+    describe "render", ->
+      it "inserts 'template' with the model data into 'el'", ->
+        this.boardView.render()
 
+        expect($(this.boardView.el).find("span:first").text())
+          .toEqual this.data.name
