@@ -40,37 +40,82 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
     describe "template", ->
       it "initializes a jquery object with 'boardHtml' template", ->
         expect(this.boardView.template.html()).toEqual($(boardHtml).html())
-      
+     
+    describe "showBoard", ->
+      it "triggers the success callback if fetching successfully", ->
+        this.server.respondWith(
+          "GET",
+          "/workspaces/1/boards/1",
+          [200,
+           {"Content-Type": "application/json"},
+           JSON.stringify(this.data)
+          ]
+        )
+        sinon.spy(BoardView.prototype, "successFetch")
+           
+        this.boardView.showBoard()
+        this.server.respond()
+
+        expect(BoardView.prototype.successFetch.calledOnce).toBeTruthy()
+
+        BoardView.prototype.successFetch.restore()
+
+      it "triggers the error callback if fails to fetch", -> 
+        this.server.respondWith(
+          "GET",
+          "/workspaces/1/boards/1",
+          [404, {}, ""]
+        )
+        sinon.spy(BoardView.prototype, "errorFetch")
+        
+        this.boardView.showBoard()
+        this.server.respond()
+       
+        expect(BoardView.prototype.errorFetch.calledOnce).toBeTruthy()
+
+        BoardView.prototype.errorFetch.restore()
+
     describe "deleteBoard", ->    
-      it "triggers the success callback if deleting the board successfully", ->
+      it "triggers the success and destroy callbacks if deleting the board 
+        successfully", ->
+
         this.server.respondWith(
           "DELETE",
           "/workspaces/1/boards/1",
           [204, {}, ""]
         )
+        sinon.spy(BoardView.prototype, "destroyCal")
+        boardView = new BoardView({model: this.board})
         sinon.spy(BoardView.prototype, "successDel")
 
-        this.boardView.deleteBoard() 
+        boardView.deleteBoard() 
         this.server.respond()
 
         expect(BoardView.prototype.successDel.calledOnce).toBeTruthy()
+        expect(BoardView.prototype.destroyCal.calledOnce).toBeTruthy()
 
         BoardView.prototype.successDel.restore()
+        BoardView.prototype.destroyCal.restore()
       
-      it "triggers the error callback if failing to delete the board", ->
-         this.server.respondWith(
-           "DELETE", 
-           "/workspaces/1/boards/1",
-           [404, {}, ""]
-         )
-         sinon.spy(BoardView.prototype, "errorDel")
+      it "triggers the error callback, 
+        but not destroy callback if failing to delete the board", ->
+        this.server.respondWith(
+          "DELETE", 
+          "/workspaces/1/boards/1",
+          [404, {}, ""]
+        )
+        sinon.spy(BoardView.prototype, "destroyCal")
+        boardView = new BoardView({model: this.board})
+        sinon.spy(BoardView.prototype, "errorDel")
 
-         this.boardView.deleteBoard()
-         this.server.respond()
-         
-         expect(BoardView.prototype.errorDel.calledOnce).toBeTruthy()
-         
-         BoardView.prototype.errorDel.restore()
+        this.boardView.deleteBoard()
+        this.server.respond()
+        
+        expect(BoardView.prototype.errorDel.calledOnce).toBeTruthy()
+        expect(BoardView.prototype.destroyCal.calledOnce).toEqual(false)
+        
+        BoardView.prototype.errorDel.restore()
+        BoardView.prototype.destroyCal.restore()
     
          
     describe "render", ->

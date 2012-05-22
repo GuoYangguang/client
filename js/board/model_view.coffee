@@ -1,5 +1,6 @@
 define ["jquery", "underscore", "backbone", "text!templates/board.html", 
-"cs!helper"], ($, _, Backbone, boardHtml, Helper) ->
+"cs!helper", "text!templates/showBoard.html"], 
+($, _, Backbone, boardHtml, Helper, showBoardHtml) ->
 
   class BoardView extends Backbone.View 
     tagName: "li"
@@ -25,8 +26,19 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
         .find("span.deleteBoard").hide()
 
     showBoard: ->
-      console.log "clicking..."
+      this.model.fetch({wait: true, 
+      success: this.successFetch, error: this.errorFetch})
+    
+    successFetch: (model, response)->
+      $("#errors").remove()
+
+    errorFetch: (model, response)->
+      helper = new Helper()
+      helper.dealErrors("#boards", response)
+   
+    changeCal: ->
       
+
     confirm: ->
       val = confirm("Are you sure to delete it?")
       this.deleteBoard() if val
