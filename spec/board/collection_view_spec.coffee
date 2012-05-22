@@ -74,13 +74,14 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         BoardsView.prototype.appendBoard.restore()
       
     describe "fetchBoards", ->
-      it "triggers success callback if the server returns 200 ", -> 
+      it "triggers success and reset callbacks if fetching successfully ", ->
         this.server.respondWith(
           "GET",
           "/workspaces/1/boards",
           [200, {"Content-Type": "application/json"}, JSON.stringify(this.data)]
         ) 
         sinon.spy(BoardsView.prototype, "successFetch")
+        sinon.spy(BoardsView.prototype, "render")
         boardsView = new BoardsView({collection: this.boards})
         
         boardsView.fetchBoards()
@@ -88,16 +89,19 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         expect(this.boards.length).toEqual 2
         expect(BoardsView.prototype.successFetch.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.render.calledOnce).toBeTruthy()
         
         BoardsView.prototype.successFetch.restore()
+        BoardsView.prototype.render.restore()
       
-      it "triggers error callback if the server returns 4**", -> 
+      it "triggers error callback,but not reset callback if failing to fetch", -> 
         this.server.respondWith(
           "GET",
           "/workspaces/1/boards",
           [404, {}, ""]
         ) 
         sinon.spy(BoardsView.prototype, "errorFetch")
+        sinon.spy(BoardsView.prototype, "render")
         boardsView = new BoardsView({collection: this.boards}) 
        
         boardsView.fetchBoards()
@@ -105,8 +109,10 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         expect(this.boards.length).toEqual 0
         expect(BoardsView.prototype.errorFetch.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.render.calledOnce).toEqual(false)
 
         BoardsView.prototype.errorFetch.restore()
+        BoardsView.prototype.render.restore()
         
     describe "listBoards", ->
       it "inserts a boards collection into into 'ul' node of el", ->
@@ -134,7 +140,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
           .toEqual this.data[0].name
         
     describe "createBoard", ->
-      it "invokes the success callback if the server returns 201", ->
+      it "triggers the success and add callbacks if the server returns 201", ->
         this.server.respondWith(
           "POST",
           "/workspaces/1/boards",
@@ -142,6 +148,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
           JSON.stringify this.data[0]]
         )
         sinon.spy(BoardsView.prototype, "successCreate")
+        sinon.spy(BoardsView.prototype, "appendBoard")
         boardsView = new BoardsView({collection: this.boards})
         expect(this.boards.length).toEqual 0 
         
@@ -150,10 +157,13 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         expect(this.boards.length).toEqual 1
         expect(BoardsView.prototype.successCreate.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.appendBoard.calledOnce).toBeTruthy()
 
         BoardsView.prototype.successCreate.restore()
+        BoardsView.prototype.appendBoard.restore()
 
-      it "invokes the error callback if the server returns 4**", ->
+      it "triggers the error callback,but not add callback 
+        if the server returns 4**", ->
         this.server.respondWith(
           "POST",
           "/workspaces/1/boards", 
@@ -161,6 +171,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
           JSON.stringify(this.invalidData)]
         ) 
         sinon.spy BoardsView.prototype, "errorCreate"
+        sinon.spy BoardsView.prototype, "appendBoard"
         boardsView = new BoardsView({collection: this.boards})
 
         boardsView.createBoard()
@@ -168,7 +179,9 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
 
         expect(this.boards.length).toEqual 0 
         expect(BoardsView.prototype.errorCreate.calledOnce).toBeTruthy()
+        expect(BoardsView.prototype.appendBoard.calledOnce).toEqual(false)
 
         BoardsView.prototype.errorCreate.restore()
+        BoardsView.prototype.appendBoard.restore()
 
     

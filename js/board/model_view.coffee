@@ -1,5 +1,6 @@
 define ["jquery", "underscore", "backbone", "text!templates/board.html", 
-"cs!helper"], ($, _, Backbone, boardHtml, Helper) ->
+"cs!helper", "text!templates/showBoard.html"], 
+($, _, Backbone, boardHtml, Helper, showBoardHtml) ->
 
   class BoardView extends Backbone.View 
     tagName: "li"
@@ -25,8 +26,27 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
         .find("span.deleteBoard").hide()
 
     showBoard: ->
-      console.log "clicking..."
-      
+      this.model.fetch({wait: true, 
+      success: this.successFetch, error: this.errorFetch})
+    
+    successFetch: (model, response)->
+      $("#errors").remove()
+      console.log model
+      if model.get("deleted_at") is undefined
+        data = model.toJSON()
+        directives = {"h3": "name"} 
+        htmlWithData = $(showBoardHtml).render(data, directives)
+        $("#boards").html(htmlWithData)
+      else
+        data = {errors: "the resource has been deleted!"}
+        directives = {"h3": "errors"} 
+        htmlWithData = $(showBoardHtml).render(data, directives)
+        $("#boards").html(htmlWithData)
+
+    errorFetch: (model, response)->
+      helper = new Helper()
+      helper.dealErrors("#boards", response)
+   
     confirm: ->
       val = confirm("Are you sure to delete it?")
       this.deleteBoard() if val

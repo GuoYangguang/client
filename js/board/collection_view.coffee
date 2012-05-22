@@ -46,7 +46,7 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
         {wait: true, success: this.successCreate, error: this.errorCreate})
     
     successCreate: (model, response)->
-      $("#errors").remove()
+      $("#errors").remove() 
 
     errorCreate: (model, response)->
       helper = new Helper()        
