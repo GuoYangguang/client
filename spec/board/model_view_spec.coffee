@@ -28,8 +28,9 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
           [204, {}, ""]
         )
         sinon.spy(BoardView.prototype, "destroyCal")
-
-        this.boardView.deleteBoard()        
+        
+        boardView = new BoardView(model: this.board)
+        boardView.deleteBoard()        
         this.server.respond()
 
         expect(BoardView.prototype.destroyCal.calledOnce).toBeTruthy()

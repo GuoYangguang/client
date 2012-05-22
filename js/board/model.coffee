@@ -1,5 +1,5 @@
-define ["jquery", "underscore", "backbone"], ($, _, Backbone) ->
+define ["underscore", "backbone"], ( _, Backbone) ->
   class Board extends Backbone.Model
-    
+         
 
     
