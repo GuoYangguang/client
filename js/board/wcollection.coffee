@@ -6,8 +6,4 @@ define ["jquery", "underscore", "backbone", "cs!board/wmodel"],
     
     url: "/workspaces" 
  
-    initialize: ->    
-      this.bind "reset", ->
-        workspace = this.get(1)
-        $("h1").text(workspace.get("name"))
-        $("#fetchBoards").attr("href", "#workspaces/#{workspace.id}/boards")
+        
