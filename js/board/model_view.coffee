@@ -31,7 +31,6 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     
     successFetch: (model, response)->
       $("#errors").remove()
-      console.log model
       if model.get("deleted_at") is undefined
         data = model.toJSON()
         directives = {"h3": "name"} 
