@@ -31,16 +31,10 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     
     successFetch: (model, response)->
       $("#errors").remove()
-      if model.get("deleted_at") is undefined
-        data = model.toJSON()
-        directives = {"h3": "name"} 
-        htmlWithData = $(showBoardHtml).render(data, directives)
-        $("#boards").html(htmlWithData)
-      else
-        data = {errors: "the resource has been deleted!"}
-        directives = {"h3": "errors"} 
-        htmlWithData = $(showBoardHtml).render(data, directives)
-        $("#boards").html(htmlWithData)
+      data = model.toJSON()
+      directives = {"h3": "name"} 
+      htmlWithData = $(showBoardHtml).render(data, directives)
+      $("#boards").html(htmlWithData)
 
     errorFetch: (model, response)->
       helper = new Helper()
