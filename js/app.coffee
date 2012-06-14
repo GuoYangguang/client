@@ -1,4 +1,4 @@
-require ["jquery", "cs!board/wcollection", "cs!board/wcollection_view", 
+require ["jquery", "cs!board/wcollection", "cs!board/wcollection_view",
 "cs!board/collection", "cs!board/collection_view"],
 ($, Workspaces, WorkspacesView, Boards, BoardsView) ->
   
@@ -9,6 +9,6 @@ require ["jquery", "cs!board/wcollection", "cs!board/wcollection_view",
     $("#fetchBoards").click ->
       workspace_id = $("h1").attr("data-workspace")
       boards = new Boards([], {workspace_id: workspace_id})
-      boardsView = new BoardsView({collection: boards}) 
-      boardsView.fetchBoards() 
+      boardsView = new BoardsView({collection: boards})
+      boardsView.fetchBoards()
     

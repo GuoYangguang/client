@@ -1,15 +1,18 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "text!board/state/states.html"
+        "cs!board/state/model_view",
+        "text!board/state/states.html",
+        "cs!helper"
        ], 
-($, _, Backbone, statesHtml) ->
+($, _, Backbone, StateView, statesHtml, Helper) ->
 
   class StatesView extends Backbone.View
     tagName: "div"
     
     initialize: ->
       this.collection.bind("add", this.appendState, this)
+      this.collection.bind("reset", this.render, this)
 
     createState: ->
       value = $("#new-state").val()
@@ -17,9 +20,26 @@ define ["jquery",
         {wait: true, success: this.successCreate, error: this.errorCreate})
     
     successCreate: (model, response)->
-    
+      $("#errors").remove()
+      
+    errorCreate: (model, response)->
+      helper = new Helper()
+      helper.dealErrors("#states", response)
+   
     appendState: (state)->
+      stateView = new StateView({model: state})
+      $("#states").append($(stateView.render().el).html())
+    
+    fetchStates:  ->
+      this.collection.fetch(
+        { 
+         wait: true, 
+         success: this.successFetch, 
+         error: this.errorFetch
+        }
+      )
+
+    successFetch: (collection, response)->
 
     render: ->
-      this.collection.each (state)->
 
