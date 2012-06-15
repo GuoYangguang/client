@@ -22,12 +22,9 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
       it "sets the 'div' as the root tag ", ->
         boardsView = new BoardsView({collection: this.boards})
         expect(boardsView.tagName).toEqual 'div'
+        expect(boardsView.el.id).toEqual 'boards'
 
     describe "initialize", ->
-      it "appends the 'boards' template into el", ->
-        boardsView = new BoardsView({collection: this.boards})
-        expect($(boardsView.el).html()).toEqual boardsHtml 
-
       it "binds a callback to the collection's reset event", -> 
         this.server.respondWith(
           "GET",
@@ -114,7 +111,7 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         BoardsView.prototype.errorFetch.restore()
         BoardsView.prototype.render.restore()
         
-    describe "listBoards", ->
+    describe "render", ->
       it "inserts a boards collection into into 'ul' node of el", ->
         models = new Array()
         for e in this.data by 1
@@ -122,22 +119,14 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
         boards = new Boards(models,{workspace_id: 1})
         boardsView = new BoardsView({collection: boards})
         
-        boardsView.listBoards()
+        boardsView.render()
+
         expect($(boardsView.el).find('ul li:eq(0) span:eq(0)').text())
           .toEqual this.data[0].name
 
         expect($(boardsView.el).find('ul li:eq(1) span:eq(0)').text())
           .toEqual this.data[1].name
 
-    describe "appendBoard", ->
-      it "appends a board into 'ul' node of el", ->
-        boardsView = new BoardsView({collection: this.boards})
-        board = new Board(this.data[0])
-        
-        boardsView.appendBoard(board)
-
-        expect($(boardsView.el).find("ul span:first").text())
-          .toEqual this.data[0].name
         
     describe "createBoard", ->
       it "triggers the success and add callbacks if the server returns 201", ->

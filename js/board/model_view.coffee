@@ -8,8 +8,6 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     initialize: (options)->
       this.model.bind("destroy", this.destroyCal, this)
 
-    template: $(boardHtml)
-         
     events: {
       "mouseover .board": "showMenu",
       "mouseout .board": "hideMenu",
@@ -61,6 +59,6 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     render: -> 
       data = this.model.toJSON()
       directives = {"span.boardName": "name"}
-      htmlWithData = this.template.render(data, directives)
+      htmlWithData = $(boardHtml).render(data, directives)
       $(this.el).html(htmlWithData).attr('data-board', this.model.id)
       this

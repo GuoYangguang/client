@@ -132,6 +132,26 @@ require ["jquery",
         StatesView.prototype.successFetch.restore()
         StatesView.prototype.render.restore()
 
+      it "triggers 'error' but not 'reset' callbacks if gets 'non-2**'", ->
+        this.server.respondWith(
+          "GET",
+          "/workspaces/1/boards/1/states",
+          [404, {}, ""]
+        )   
+
+        sinon.spy(StatesView.prototype, "errorFetch")
+        sinon.spy(StatesView.prototype, "render")
+        
+        statesView = new StatesView({collection: this.states})
+        statesView.fetchStates()
+        this.server.respond()
+        
+        expect(StatesView.prototype.errorFetch.calledOnce).toBeTruthy()
+        expect(StatesView.prototype.render.calledOnce).not.toBeTruthy()
+
+        StatesView.prototype.errorFetch.restore()
+        StatesView.prototype.render.restore()
+
     describe "render", ->
       it "inserts a collection of states data into 'el'", ->
         #this.statesView.render()
