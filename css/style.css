@@ -1,4 +1,8 @@
 
+#fetchBoards{
+  cursor: pointer;
+}
+
 #boards{
   width: 25%;
 }

@@ -37,10 +37,6 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
 
         BoardView.prototype.destroyCal.restore()
 
-    describe "template", ->
-      it "initializes a jquery object with 'boardHtml' template", ->
-        expect(this.boardView.template.html()).toEqual($(boardHtml).html())
-     
     describe "showBoard", ->
       it "triggers the success callback if fetching successfully", ->
         this.server.respondWith(
@@ -124,3 +120,5 @@ require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/boar
 
         expect($(this.boardView.el).find("span:first").text())
           .toEqual this.data.name
+
+    

@@ -8,8 +8,6 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     initialize: (options)->
       this.model.bind("destroy", this.destroyCal, this)
 
-    template: $(boardHtml)
-         
     events: {
       "mouseover .board": "showMenu",
       "mouseout .board": "hideMenu",
@@ -31,17 +29,10 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     
     successFetch: (model, response)->
       $("#errors").remove()
-      console.log model
-      if model.get("deleted_at") is undefined
-        data = model.toJSON()
-        directives = {"h3": "name"} 
-        htmlWithData = $(showBoardHtml).render(data, directives)
-        $("#boards").html(htmlWithData)
-      else
-        data = {errors: "the resource has been deleted!"}
-        directives = {"h3": "errors"} 
-        htmlWithData = $(showBoardHtml).render(data, directives)
-        $("#boards").html(htmlWithData)
+      data = model.toJSON()
+      directives = {"h3": "name"} 
+      htmlWithData = $(showBoardHtml).render(data, directives)
+      $("#boards").html(htmlWithData)
 
     errorFetch: (model, response)->
       helper = new Helper()
@@ -68,6 +59,6 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     render: -> 
       data = this.model.toJSON()
       directives = {"span.boardName": "name"}
-      htmlWithData = this.template.render(data, directives)
-      $(this.el).html(htmlWithData)
+      htmlWithData = $(boardHtml).render(data, directives)
+      $(this.el).html(htmlWithData).attr('data-board', this.model.id)
       this
