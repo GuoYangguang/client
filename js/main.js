@@ -1,4 +1,5 @@
 require({
+  basePath: "spec",
   paths: {
           jquery: "libs/jquery/jquery",
       underscore: "libs/underscore/underscore",
