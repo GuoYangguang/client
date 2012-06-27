@@ -13,7 +13,6 @@ define ["jquery",
     initialize: ->
       this.collection.bind("add", this.appendState, this)
       this.collection.bind("reset", this.render, this)
-      $(this.el).html(statesHtml)
 
     createState: ->
       value = $("#new-state").val()
@@ -45,6 +44,7 @@ define ["jquery",
     errorFetch: (collection, response)->
 
     render: ->
+      $(this.el).html(statesHtml)
       statesView = this
       this.collection.each (state)->
         statesView.appendState(state) 

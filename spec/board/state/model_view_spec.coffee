@@ -25,6 +25,6 @@ require ["jquery",
     describe "render", ->
       it "inserts 'state' data into 'el'", ->
         this.stateView.render()
-        expect($(this.stateView.el).find('span').text()).toEqual("pending")
+        expect($(this.stateView.el).find('span').first().text()).toEqual("pending")
 
 

@@ -4,7 +4,6 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
 
   class BoardsView extends Backbone.View
     tagName: "div"
-    id: "boards"
 
     initialize: ->
       this.collection.bind("reset", this.render, this)
@@ -27,13 +26,12 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
       helper.dealErrors("#fetchBoards", response)
 
     render: ->
-      $("#boards").remove()
       $(this.el).html(boardsHtml)
       boardsView = this
       this.collection.each (board)->
         boardView = new BoardView({model: board})
         $(boardsView.el).find("ul#listBoards").append(boardView.render().el)
-      $("#fetchBoards").after(this.el)
+      $("#boarddata").html(this.el)
       this
 
     appendBoard: (board)->
@@ -50,6 +48,6 @@ define ["jquery", "underscore", "backbone", "cs!board/model_view",
 
     errorCreate: (model, response)->
       helper = new Helper()        
-      helper.dealErrors("#boards p", response)
+      helper.dealErrors("#boarddata p", response)
 
     

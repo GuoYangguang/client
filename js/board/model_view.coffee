@@ -32,11 +32,11 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
       data = model.toJSON()
       directives = {"h3": "name"} 
       htmlWithData = $(showBoardHtml).render(data, directives)
-      $("#boards").html(htmlWithData)
+      $("#boarddata").html(htmlWithData)
 
     errorFetch: (model, response)->
       helper = new Helper()
-      helper.dealErrors("#boards", response)
+      helper.dealErrors("#boarddata", response)
    
     confirm: ->
       val = confirm("Are you sure to delete it?")
@@ -51,7 +51,7 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
 
     errorDel: (model, response)->
       helper = new Helper()  
-      helper.dealErrors("#boards", response)      
+      helper.dealErrors("#boarddata", response)      
    
     destroyCal: -> 
       this.remove()

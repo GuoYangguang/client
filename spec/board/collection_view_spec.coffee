@@ -22,7 +22,6 @@ require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/
       it "sets the 'div' as the root tag ", ->
         boardsView = new BoardsView({collection: this.boards})
         expect(boardsView.tagName).toEqual 'div'
-        expect(boardsView.el.id).toEqual 'boards'
 
     describe "initialize", ->
       it "binds a callback to the collection's reset event", -> 
