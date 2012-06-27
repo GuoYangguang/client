@@ -30,7 +30,7 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
     successFetch: (model, response)->
       $("#errors").remove()
       data = model.toJSON()
-      directives = {"h3": "name"} 
+      directives = {"h3": "name", "h3@id": "id"} 
       htmlWithData = $(showBoardHtml).render(data, directives)
       $("#boarddata").html(htmlWithData)
 

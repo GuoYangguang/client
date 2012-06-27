@@ -47,4 +47,6 @@ define ["jquery",
       $(this.el).html(statesHtml)
       statesView = this
       this.collection.each (state)->
-        statesView.appendState(state) 
+        stateView = new StateView({model: state})
+        $(this.el).find("#states").append(stateView.render().el)
+      this
