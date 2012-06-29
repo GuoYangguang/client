@@ -2,7 +2,7 @@ define ["jquery",
         "underscore", 
         "backbone", 
         "cs!board/state/model_view",
-        "text!board/state/states.html",
+        "text!templates/state/states.html",
         "cs!helper"
        ], 
 ($, _, Backbone, StateView, statesHtml, Helper) ->
@@ -13,6 +13,11 @@ define ["jquery",
     initialize: ->
       this.collection.bind("add", this.appendState, this)
       this.collection.bind("reset", this.render, this)
+    
+    events: {
+      "click #create-state": "createState" 
+    
+    }
 
     createState: ->
       value = $("#new-state").val()
@@ -28,7 +33,7 @@ define ["jquery",
    
     appendState: (state)->
       stateView = new StateView({model: state})
-      $(this.el).find("#states").append($(stateView.render().el).html())
+      $(this.el).append(stateView.render().el)
     
     fetchStates:  ->
       this.collection.fetch(
@@ -48,5 +53,5 @@ define ["jquery",
       statesView = this
       this.collection.each (state)->
         stateView = new StateView({model: state})
-        $(this.el).find("#states").append(stateView.render().el)
+        $(statesView.el).append(stateView.render().el)
       this

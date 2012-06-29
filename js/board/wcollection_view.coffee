@@ -11,6 +11,6 @@ define ["jquery", "underscore", "backbone"],
 
     render: ->
       workspace = this.collection.get(1)
-      $("h1").text(workspace.get("name"))
-      $("h1").attr("data-workspace", workspace.id)
+      $("#workspace").text(workspace.get("name"))
+      $("#workspace").attr("data-workspace", workspace.id)
     
