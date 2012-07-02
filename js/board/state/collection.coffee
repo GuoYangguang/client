@@ -14,3 +14,6 @@ define ["underscore",
 
     url: -> 
       "/workspaces/#{@workspaceId}/boards/#{@boardId}/states"
+
+    comparator: (state)->
+      state.get("created_at")

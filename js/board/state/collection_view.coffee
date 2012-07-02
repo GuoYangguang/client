@@ -9,13 +9,13 @@ define ["jquery",
 
   class StatesView extends Backbone.View
     tagName: "div"
-    
+
     initialize: ->
       this.collection.bind("add", this.appendState, this)
       this.collection.bind("reset", this.render, this)
     
     events: {
-      "click #create-state": "createState" 
+      "click #create-state-btn": "createState" 
     
     }
 
@@ -29,11 +29,11 @@ define ["jquery",
       
     errorCreate: (model, response)->
       helper = new Helper()
-      helper.dealErrors("#states", response)
+      helper.dealErrors("#create-state", response)
    
     appendState: (state)->
       stateView = new StateView({model: state})
-      $(this.el).append(stateView.render().el)
+      $("#states-stories").append(stateView.render().el)
     
     fetchStates:  ->
       this.collection.fetch(
@@ -50,8 +50,10 @@ define ["jquery",
 
     render: ->
       $(this.el).html(statesHtml)
-      statesView = this
+      appendNode = $(this.el).find("#states-stories")
       this.collection.each (state)->
         stateView = new StateView({model: state})
-        $(statesView.el).append(stateView.render().el)
+        appendNode.append(stateView.render().el)
+      $("#board-data").append(this.el)
       this
+    

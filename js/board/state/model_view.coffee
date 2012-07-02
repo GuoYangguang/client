@@ -7,6 +7,7 @@ define ["jquery",
 
   class StateView extends Backbone.View
     tagName: "div"
+    className: "state-stories"
     
     render: ->
       data = this.model.toJSON()

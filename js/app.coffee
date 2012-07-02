@@ -6,9 +6,9 @@ require ["jquery", "cs!board/wcollection", "cs!board/wcollection_view",
     workspaces = new Workspaces()
     workspacesView = new WorkspacesView({collection: workspaces})
     workspacesView.fetchWorkspaces()
-    $("#fetchBoards").click ->
+    $("#fetch-boards").click ->
       workspace_id = $("#workspace").attr("data-workspace")
       boards = new Boards([], {workspace_id: workspace_id})
       boardsView = new BoardsView({collection: boards})
       boardsView.fetchBoards()
-    
+      $("#board-data").html(boardsView.el)
