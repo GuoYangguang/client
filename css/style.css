@@ -4,7 +4,7 @@
 }
 
 #board-data{
-  width: 25%;
+  width: 80%;
 }
 
 .board{
@@ -22,7 +22,7 @@
 .delete-board{
   display: none;
   cursor: pointer;
-  margin-left: 30%;
+  margin-left: 10%;
 }
 
 .color-board{
@@ -30,5 +30,15 @@
 }
 
 .state-stories{
-  float: left
+  float: left;
+  width: 15%;
+  height: 500px;
+  margin-left: 2%;
+  background-color: orange;
+  text-align: center;
+}
+
+#create-state{
+  position: absolute;
+  top: 700px;
 }
