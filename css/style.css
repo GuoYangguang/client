@@ -1,9 +1,9 @@
 
-#fetchBoards{
+#fetch-boards{
   cursor: pointer;
 }
 
-#boards{
+#board-data{
   width: 25%;
 }
 
@@ -11,20 +11,24 @@
   padding: 5px;
 }
 
-#listBoards{
+#list-boards{
   list-style-type: none;
 }
 
-.boardName{
+.board-name{
   cursor: pointer;
 }
 
-.deleteBoard{
+.delete-board{
   display: none;
   cursor: pointer;
   margin-left: 30%;
 }
 
-.colorBoard{
+.color-board{
   background-color: orange;
+}
+
+.state-stories{
+  float: left
 }
