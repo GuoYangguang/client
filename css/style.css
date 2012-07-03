@@ -42,3 +42,7 @@
   position: absolute;
   top: 700px;
 }
+
+.delete-state{
+  cursor: pointer;
+}
