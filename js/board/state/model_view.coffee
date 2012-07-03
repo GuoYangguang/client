@@ -2,9 +2,10 @@ define ["jquery",
         "underscore", 
         "backbone", 
         "text!templates/state/state.html",
+        "text!templates/state/edit.html",
         "cs!helper"
        ], 
-($, _, Backbone, stateHtml, Helper) ->
+($, _, Backbone, stateHtml, editHtml, Helper) ->
 
   class StateView extends Backbone.View
     tagName: "div"
@@ -12,10 +13,12 @@ define ["jquery",
     
     initialize: ->
       this.model.bind("destroy", this.destroyCal, this)
+      this.model.bind("change", this.changeCal, this)
 
     events: {
-      "click .delete-state": "confirm"
-    
+      "click .delete-state": "confirm", 
+      "dblclick .state": "editState",
+      "submit .state form": "updateState"
     }
 
     confirm: ->
@@ -36,6 +39,30 @@ define ["jquery",
 
     destroyCal: ->
       this.remove() 
+    
+    editState: ->
+      node = $(this.el).find(".state")
+      val = node.text()
+      node.html(editHtml)
+      node.find("input").val(val)
+    
+    updateState: ->
+      val = $(this.el).find(".state input").val()
+      this.model.save(
+        {name: val}, 
+        {wait:true, success: this.successUpd, error: this.errorUpd}
+      )
+    
+    successUpd: (model, response)->
+      $("#errors").remove()
+
+    errorUpd: (model, response)->
+      helper = new Helper()
+      helper.dealErrors("#states-stories", response)
+    
+    changeCal: ->
+      name = this.model.get("name")
+      $(this.el).find(".state").html(name)
 
     render: ->
       data = this.model.toJSON()

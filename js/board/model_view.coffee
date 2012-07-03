@@ -1,7 +1,7 @@
 define ["jquery", "underscore", "backbone", "text!templates/board.html", 
-"cs!helper", "cs!board/state/collection", "text!templates/show_board.html" 
+"cs!helper", "cs!board/state/collection", "text!templates/show.html" 
 "cs!board/state/collection_view"],
-($, _, Backbone, boardHtml, Helper, States, showBoardHtml, StatesView) ->
+($, _, Backbone, boardHtml, Helper, States, showHtml, StatesView) ->
 
   class BoardView extends Backbone.View 
     tagName: "li"
@@ -33,7 +33,7 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
       
       data = model.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
-      htmlWithData = $(showBoardHtml).render(data, directives)
+      htmlWithData = $(showHtml).render(data, directives)
       $("#board-data").html(htmlWithData)
       
       # this fetch may success or fail

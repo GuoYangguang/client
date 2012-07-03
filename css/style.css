@@ -31,7 +31,7 @@
 
 .state-stories{
   float: left;
-  width: 15%;
+  width: 20%;
   height: 500px;
   margin-left: 2%;
   background-color: orange;
@@ -45,4 +45,13 @@
 
 .delete-state{
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.state{
+  cursor: pointer;
+}
+
+.state form {
+  display: inline;
 }
