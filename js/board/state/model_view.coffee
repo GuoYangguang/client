@@ -9,6 +9,10 @@ define ["jquery",
     tagName: "div"
     className: "state-stories"
     
+    events: {
+    
+    
+    }
     render: ->
       data = this.model.toJSON()
       directives = {"span.state": "name"}

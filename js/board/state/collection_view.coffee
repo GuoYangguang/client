@@ -45,8 +45,11 @@ define ["jquery",
       )
 
     successFetch: (collection, response)->
+      $("#errors").remove()
 
     errorFetch: (collection, response)->
+      helper = new Helper()
+      helper.dealErrors("#board", response)
 
     render: ->
       $(this.el).html(statesHtml)

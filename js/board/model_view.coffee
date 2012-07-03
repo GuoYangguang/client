@@ -36,6 +36,7 @@ define ["jquery", "underscore", "backbone", "text!templates/board.html",
       htmlWithData = $(showBoardHtml).render(data, directives)
       $("#board-data").html(htmlWithData)
       
+      # this fetch may success or fail
       workspaceId = $("#workspace").attr("data-workspace")
       states = new States([], {workspaceId: workspaceId , boardId: model.id})
       statesView = new StatesView({collection: states})
