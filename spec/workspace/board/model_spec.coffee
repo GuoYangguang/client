@@ -1,1 +1,1 @@
-require ["cs!board/model"], (Board) ->
+require ["cs!workspace/board/model"], (Board) ->

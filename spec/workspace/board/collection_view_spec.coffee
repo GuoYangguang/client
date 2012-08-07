@@ -1,5 +1,10 @@
-require ["jquery", "cs!board/collection_view", "cs!board/collection", "cs!board/model", 
-"text!templates/boards.html"], ($, BoardsView, Boards, Board, boardsHtml) ->
+require ["jquery", 
+         "cs!workspace/board/collection_view", 
+         "cs!workspace/board/collection", 
+         "cs!workspace/board/model", 
+         "text!templates/workspace/board/boards.html"
+        ], 
+($, BoardsView, Boards, Board, boardsHtml) ->
 
   describe "BoardsView", ->
     beforeEach ->

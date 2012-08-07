@@ -1,7 +1,7 @@
 require ["underscore", 
          "backbone", 
-         "cs!board/state/collection", 
-         "cs!board/state/model"
+         "cs!workspace/board/state/collection", 
+         "cs!workspace/board/state/model"
         ],
 (_, Backbone, States, State) ->
    

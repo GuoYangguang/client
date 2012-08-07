@@ -1,6 +1,6 @@
 require ["jquery",
-         "cs!board/state/model", 
-         "cs!board/state/model_view"
+         "cs!workspace/board/state/model", 
+         "cs!workspace/board/state/model_view"
         ], 
 ($, State, StateView) ->
 

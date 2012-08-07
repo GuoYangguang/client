@@ -1,4 +1,4 @@
-require ["cs!board/collection", "cs!board/model"], 
+require ["cs!workspace/board/collection", "cs!workspace/board/model"], 
 (Boards, Board)->
 
   describe "Boards", -> 

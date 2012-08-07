@@ -1,4 +1,8 @@
-require ["jquery", "cs!board/model", "cs!board/model_view", "text!templates/board.html"],
+require ["jquery", 
+         "cs!workspace/board/model", 
+         "cs!workspace/board/model_view", 
+         "text!templates/workspace/board/board.html"
+        ],
 ($, Board, BoardView, boardHtml)->
   describe "BoardView", ->
 

@@ -1,1 +1,1 @@
-require ["cs!board/state/model"], (State) ->
+require ["cs!workspace/board/state/model"], (State) ->

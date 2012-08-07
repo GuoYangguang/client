@@ -1,5 +1,9 @@
-require ["jquery", "cs!workspace/wcollection", "cs!workspace/wcollection_view",
-"cs!workspace/board/collection", "cs!workspace/board/collection_view"],
+require ["jquery", 
+         "cs!workspace/wcollection", 
+         "cs!workspace/wcollection_view",
+         "cs!workspace/board/collection", 
+         "cs!workspace/board/collection_view"
+        ],
 ($, Workspaces, WorkspacesView, Boards, BoardsView) ->
   
   $(document).ready ->

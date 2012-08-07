@@ -1,7 +1,7 @@
 require ["jquery", 
-         "cs!board/state/collection_view",
-         "cs!board/state/model",
-         "cs!board/state/collection"
+         "cs!workspace/board/state/collection_view",
+         "cs!workspace/board/state/model",
+         "cs!workspace/board/state/collection"
         ], 
 ($, StatesView, State, States) ->
   
