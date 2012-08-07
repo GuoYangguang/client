@@ -1,4 +1,4 @@
-define ["jquery", "underscore", "backbone", "cs!board/wmodel"], 
+define ["jquery", "underscore", "backbone", "cs!workspace/wmodel"], 
 ($, _, Backbone, Workspace)->
   class Workspaces extends Backbone.Collection
     

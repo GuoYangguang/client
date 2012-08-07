@@ -1,6 +1,8 @@
-define ["jquery", "underscore", "backbone", "text!templates/board.html", 
-"cs!helper", "cs!board/state/collection", "text!templates/show.html" 
-"cs!board/state/collection_view"],
+define ["jquery", "underscore", "backbone", 
+"text!templates/workspace/board/board.html", 
+"cs!helper", "cs!workspace/board/state/collection", 
+"text!templates/workspace/board/show.html" 
+"cs!workspace/board/state/collection_view"],
 ($, _, Backbone, boardHtml, Helper, States, showHtml, StatesView) ->
 
   class BoardView extends Backbone.View 

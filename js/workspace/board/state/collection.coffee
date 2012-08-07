@@ -1,6 +1,6 @@
 define ["underscore", 
         "backbone",
-        "cs!board/state/model"
+        "cs!workspace/board/state/model"
        ], 
 (_, Backbone, State)->
 
