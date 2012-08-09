@@ -19,9 +19,15 @@ define ["jquery",
       
     }
 
-    fetchBoards: ->
-      this.collection.fetch({wait: true, success: this.successFetch, 
-      error: this.errorFetch})
+    fetchBoards: (page)->
+      this.collection.fetch(
+        {
+         wait: true, 
+         data: {page: page},
+         success: this.successFetch, 
+         error: this.errorFetch
+        }
+      )
         
     successFetch: (collection, response) ->
       $("#errors").remove()   
@@ -31,10 +37,14 @@ define ["jquery",
       helper.dealErrors("#board-data", response)
 
     render: ->
-      listBoardsNode = $(this.el).html(boardsHtml).find("#list-boards")
-      this.collection.each (board)->
-        boardView = new BoardView({model: board})
-        listBoardsNode.append(boardView.render().el)
+      if $("ul#list-boards").length is 0
+        listBoardsNode = $(this.el).html(boardsHtml).find("#list-boards")
+        this.collection.each (board)->
+          boardView = new BoardView({model: board})
+          listBoardsNode.append(boardView.render().el)
+      else
+        this.collection.each (board)->
+          this.appendBoard(board)
       this
 
     appendBoard: (board)->

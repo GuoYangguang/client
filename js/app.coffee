@@ -1,6 +1,6 @@
 require ["jquery", 
-         "cs!workspace/wcollection", 
-         "cs!workspace/wcollection_view",
+         "cs!workspace/collection", 
+         "cs!workspace/collection_view",
          "cs!workspace/board/collection", 
          "cs!workspace/board/collection_view"
         ],
@@ -14,5 +14,5 @@ require ["jquery",
       workspace_id = $("#workspace").attr("data-workspace")
       boards = new Boards([], {workspace_id: workspace_id})
       boardsView = new BoardsView({collection: boards})
-      boardsView.fetchBoards()
+      boardsView.fetchBoards(0)
       $("#board-data").html(boardsView.el)
