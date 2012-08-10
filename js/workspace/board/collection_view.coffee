@@ -12,24 +12,25 @@ define ["jquery",
 
     initialize: ->
       this.collection.bind("reset", this.render, this)
-      this.collection.bind("add", this.appendBoard, this)
+      this.collection.bind("add", this.prependBoard, this)
     
     events: {
       "click #create-board-btn": "createBoard"
-      
+      "click #boards-page": "fetchBoards" 
     }
 
-    fetchBoards: (page)->
+    fetchBoards: ->
       this.collection.fetch(
         {
          wait: true, 
-         data: {page: page},
+         data: {page: this.collection.currentPage},
          success: this.successFetch, 
          error: this.errorFetch
         }
       )
         
     successFetch: (collection, response) ->
+      collection.currentPage++
       $("#errors").remove()   
 
     errorFetch: (collection, response) ->
@@ -44,12 +45,13 @@ define ["jquery",
           listBoardsNode.append(boardView.render().el)
       else
         this.collection.each (board)->
-          this.appendBoard(board)
+          boardView = new BoardView({model: board})
+          $("ul#list-boards").append(boardView.render().el)
       this
 
-    appendBoard: (board)->
+    prependBoard: (board)->
       boardView = new BoardView({model: board})
-      $("ul#list-boards").append(boardView.render().el)
+      $("ul#list-boards").prepend(boardView.render().el)
 
     createBoard: ->
       value = $('#new-board').val()

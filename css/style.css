@@ -55,3 +55,7 @@
 .state form {
   display: inline;
 }
+
+#boards-page{
+  cursor: pointer;
+}

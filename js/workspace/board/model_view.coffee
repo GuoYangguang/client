@@ -73,5 +73,5 @@ define ["jquery",
       data = this.model.toJSON()
       directives = {"span.board-name": "name"}
       htmlWithData = $(boardHtml).render(data, directives)
-      $(this.el).html(htmlWithData).attr('data-board', this.model.id)
+      $(this.el).html(htmlWithData)
       this

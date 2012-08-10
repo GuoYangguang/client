@@ -5,10 +5,9 @@ define ["jquery", "underscore", "backbone", "cs!workspace/board/model"],
     
     initialize: (models, options)->
       @workspace_id = options.workspace_id if options.workspace_id
+      @currentPage = 0 
 
     url: ->
       "/workspaces/" + @workspace_id + "/boards"  
 
-    comparator: (board)->
-      board.get("created_at")
       
