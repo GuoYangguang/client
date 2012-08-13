@@ -41,11 +41,13 @@ define ["jquery",
       helper.dealErrors("#board-data", response)
 
     render: ->
-      listBoardsNode = $(this.el).html(boardsHtml).find("#list-boards")
+      $(this.el).html(boardsHtml)
+      $("#board-data").html(this.el)
+      listBoardsNode = $("#list-boards")
       this.collection.each (board)->
         boardView = new BoardView({model: board})
         listBoardsNode.append(boardView.render().el)
-      $("#board-data").html(this.el)
+      this.delegateEvents()
       this
 
     showBoard: (board)->
