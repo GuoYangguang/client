@@ -1,22 +1,25 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
+        "cs!helper",
         "cs!workspace/board/model_view", 
-        "text!templates/workspace/board/boards.html", 
-        "cs!helper"
+        "cs!workspace/board/state/collection", 
+        "cs!workspace/board/state/collection_view",
+        "text!templates/workspace/board/show.html",
+        "text!templates/workspace/board/boards.html" 
        ], 
-($, _, Backbone, BoardView, boardsHtml, Helper) ->
+($, _, Backbone, Helper, BoardView, States, StatesView, showBoardHtml, boardsHtml) ->
 
   class BoardsView extends Backbone.View
     tagName: "div"
 
     initialize: ->
       this.collection.bind("reset", this.render, this)
-      this.collection.bind("add", this.prependBoard, this)
+      this.collection.bind("add", this.showBoard, this)
     
     events: {
       "click #create-board-btn": "createBoard"
-      "click #boards-page": "fetchBoards" 
+      "click #more-boards": "fetchBoards" 
     }
 
     fetchBoards: ->
@@ -38,20 +41,23 @@ define ["jquery",
       helper.dealErrors("#board-data", response)
 
     render: ->
-      if $("ul#list-boards").length is 0
-        listBoardsNode = $(this.el).html(boardsHtml).find("#list-boards")
-        this.collection.each (board)->
-          boardView = new BoardView({model: board})
-          listBoardsNode.append(boardView.render().el)
-      else
-        this.collection.each (board)->
-          boardView = new BoardView({model: board})
-          $("ul#list-boards").append(boardView.render().el)
+      listBoardsNode = $(this.el).html(boardsHtml).find("#list-boards")
+      this.collection.each (board)->
+        boardView = new BoardView({model: board})
+        listBoardsNode.append(boardView.render().el)
+      $("#board-data").html(this.el)
       this
 
-    prependBoard: (board)->
-      boardView = new BoardView({model: board})
-      $("ul#list-boards").prepend(boardView.render().el)
+    showBoard: (board)->
+      data = board.toJSON()
+      directives = {"h3": "name", "h3@data-board": "id"}
+      htmlWithData = $(showBoardHtml).render(data, directives)
+      $("#board-data").html(htmlWithData)
+      
+      workspaceId = $("#workspace").attr("data-workspace")
+      states = new States([], {workspaceId: workspaceId , boardId: board.id})
+      statesView = new StatesView({collection: states})
+      statesView.fetchStates()
 
     createBoard: ->
       value = $('#new-board').val()

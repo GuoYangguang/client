@@ -1,13 +1,13 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "text!templates/workspace/board/board.html", 
         "cs!helper", 
         "cs!workspace/board/state/collection", 
+        "cs!workspace/board/state/collection_view",
+        "text!templates/workspace/board/board.html", 
         "text!templates/workspace/board/show.html" 
-        "cs!workspace/board/state/collection_view"
        ],
-($, _, Backbone, boardHtml, Helper, States, showHtml, StatesView) ->
+($, _, Backbone, Helper, States, StatesView, boardHtml, showBoardHtml) ->
 
   class BoardView extends Backbone.View 
     tagName: "li"
@@ -39,7 +39,7 @@ define ["jquery",
       
       data = model.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
-      htmlWithData = $(showHtml).render(data, directives)
+      htmlWithData = $(showBoardHtml).render(data, directives)
       $("#board-data").html(htmlWithData)
       
       workspaceId = $("#workspace").attr("data-workspace")

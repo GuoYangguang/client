@@ -15,4 +15,3 @@ require ["jquery",
       boards = new Boards([], {workspace_id: workspace_id})
       boardsView = new BoardsView({collection: boards})
       boardsView.fetchBoards()
-      $("#board-data").html(boardsView.el)
