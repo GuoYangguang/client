@@ -9,6 +9,7 @@ define ["jquery",
 
   class StatesView extends Backbone.View
     tagName: "div"
+    id: "states"
 
     initialize: ->
       this.collection.bind("add", this.appendState, this)

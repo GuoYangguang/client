@@ -8,7 +8,7 @@ define ["jquery",
 ($, _, Backbone, stateHtml, editHtml, Helper) ->
 
   class StateView extends Backbone.View
-    tagName: "div"
+    tagName: "li"
     className: "state-stories"
     
     initialize: ->
@@ -35,7 +35,7 @@ define ["jquery",
 
     errorDel: (model, response)->
       helper = new Helper()
-      helper.dealErrors("#states-stories", response)
+      helper.dealErrors("#states", response)
 
     destroyCal: ->
       this.remove() 
@@ -58,7 +58,7 @@ define ["jquery",
 
     errorUpd: (model, response)->
       helper = new Helper()
-      helper.dealErrors("#states-stories", response)
+      helper.dealErrors("#states", response)
     
     changeCal: ->
       name = this.model.get("name")

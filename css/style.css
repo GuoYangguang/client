@@ -3,10 +3,6 @@
   cursor: pointer;
 }
 
-#board-data{
-  width: 80%;
-}
-
 .board{
   padding: 5px;
 }
@@ -29,18 +25,26 @@
   background-color: green;
 }
 
-.state-stories{
-  float: left;
-  width: 20%;
-  height: 500px;
-  margin-left: 2%;
-  background-color: green;
-  text-align: center;
+#states-scroller{
+  width: 800px;
+  height: 650px;
+  overflow: auto;
+  overflow-y: hidden;
 }
 
-#create-state{
-  position: absolute;
-  top: 700px;
+
+#states-stories{
+ width:20000px; 
+ list-style: none;
+}
+
+.state-stories{
+  float: left;
+  width: 200px;
+  height: 600px;
+  margin-right: 10px;
+  background-color: green;
+  text-align: center;
 }
 
 .delete-state{
