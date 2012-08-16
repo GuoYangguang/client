@@ -40,4 +40,4 @@ define [
       this
 
     newStory: ->
-      alert "i am new story"
+      $("#dialog").dialog('open')  

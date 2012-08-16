@@ -59,5 +59,12 @@ define ["jquery",
         stateView = new StateView({model: state})
         appendNode.append(stateView.render().el)
       $("#board-data").append(this.el)
+      $("#dialog").dialog(
+        {
+         autoOpen: false, 
+         modal: true, 
+         title: "create a new story"
+        }
+      )
       this
     
