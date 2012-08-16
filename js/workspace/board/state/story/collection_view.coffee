@@ -9,14 +9,14 @@ define [
 ($, _, Backbone, StoryView, storiesHtml, Helper)->
   
   class StoriesView extends Backbone.View
-    tagName: "ul"
+    tagName: "div"
 
     initialize: ->
       this.collection.bind("reset", this.render, this) 
 
     events: {
     
-       "click#new-story": "newStory"
+       "click.new-story": "newStory"
     
     }
     
@@ -33,11 +33,11 @@ define [
       helper.dealErrors("#states", response)
 
     render: ->
-      _el = $(this.el)
+      appendNode = $(this.el).html(storiesHtml).find("ul")
       this.collection.each (story)->
         storyView = new StoryView({model: story}) 
-        _el.append(storyView.render().el)
-      $("#state-stories").append(this.el).append(storiesHtml)
+        appendNode.append(storyView.render().el)
+      this
 
     newStory: ->
       alert "i am new story"

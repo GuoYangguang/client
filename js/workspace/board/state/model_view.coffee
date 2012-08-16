@@ -1,11 +1,13 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
+        "cs!workspace/board/state/story/collection",
+        "cs!workspace/board/state/story/collection_view",
         "text!templates/workspace/board/state/state.html",
         "text!templates/workspace/board/state/edit.html",
         "cs!helper"
        ], 
-($, _, Backbone, stateHtml, editHtml, Helper) ->
+($, _, Backbone, Stories, StoriesView, stateHtml, editHtml, Helper) ->
 
   class StateView extends Backbone.View
     tagName: "li"
@@ -69,4 +71,14 @@ define ["jquery",
       directives = {"span.state": "name"}
       htmlWithData = $(stateHtml).render(data, directives)
       $(this.el).html(htmlWithData)
+
+      workspaceId = $("#workspace").attr("data-workspace")
+      boardId = $("#board h3").attr("data-board")
+      stories = new Stories(
+         [], 
+         {workspaceId: workspaceId, boardId: boardId, stateId: this.model.id}
+        )
+      storiesView = new StoriesView({collection: stories})
+      storiesView.fetchStories()
+      $(this.el).append(storiesView.el)
       this

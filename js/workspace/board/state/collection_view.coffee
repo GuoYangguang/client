@@ -2,12 +2,10 @@ define ["jquery",
         "underscore", 
         "backbone", 
         "cs!workspace/board/state/model_view",
-        "cs!workspace/board/state/story/collection",
-        "cs!workspace/board/state/story/collection_view",
         "text!templates/workspace/board/state/states.html",
         "cs!helper"
        ], 
-($, _, Backbone, StateView, Stories, StoriesView, statesHtml, Helper) ->
+($, _, Backbone, StateView, statesHtml, Helper) ->
 
   class StatesView extends Backbone.View
     tagName: "div"
@@ -57,19 +55,9 @@ define ["jquery",
     render: ->
       $(this.el).html(statesHtml)
       appendNode = $(this.el).find("#states-stories")
-      workspaceId = $("#workspace").attr("data-workspace")
-      boardId = $("#board h3").attr("data-board")
       this.collection.each (state)->
         stateView = new StateView({model: state})
         appendNode.append(stateView.render().el)
-
-        stories = new Stories(
-          [], 
-          {workspaceId: workspaceId, boardId: boardId, stateId: state.id}
-        )
-        storiesView = new StoriesView({collection: stories})
-        storiesView.fetchStories()
-
       $("#board-data").append(this.el)
       this
     

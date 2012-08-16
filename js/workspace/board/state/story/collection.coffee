@@ -15,6 +15,6 @@ define [
     model: Story
 
     url: ->
-      "/workspaces/#{@workspaceId}/boards/#{@boardId}/states/#{@stateId}"
+      "/workspaces/#{@workspaceId}/boards/#{@boardId}/states/#{@stateId}/stories"
 
 
