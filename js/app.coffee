@@ -15,3 +15,19 @@ require ["jquery",
       boards = new Boards([], {workspace_id: workspace_id})
       boardsView = new BoardsView({collection: boards})
       boardsView.fetchBoards()
+    
+    $(".sedate").datepicker(
+      dateFormat: 'yy-mm-dd',
+      showOn: "button",
+      buttonImageOnly: true,
+      buttonImage: "/img/calendar.gif"
+     )
+
+    $("#dialog").dialog(
+      {
+       autoOpen: false, 
+       modal: true, 
+       width: 600,
+       title: "create a new story"
+      }
+    )

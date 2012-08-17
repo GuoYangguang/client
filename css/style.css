@@ -22,7 +22,7 @@
 }
 
 .color-board{
-  background-color: green;
+  background-color: #eee;
 }
 
 #states-scroller{
@@ -43,7 +43,7 @@
   width: 200px;
   height: 600px;
   margin-right: 10px;
-  background-color: green;
+  background-color: #eee;
   text-align: center;
 }
 
