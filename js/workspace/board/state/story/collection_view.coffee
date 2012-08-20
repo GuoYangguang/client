@@ -15,8 +15,7 @@ define [
       this.collection.bind("reset", this.render, this) 
 
     events: {
-    
-       "click.new-story": "newStory"
+      "click.new-story": "newStory"
     
     }
     
@@ -40,4 +39,21 @@ define [
       this
 
     newStory: ->
-      $("#dialog").dialog('open')  
+      #$(".dialog").dialog('open')  
+
+      #$(".sedate").datepicker(
+      #  {
+      #   dateFormat: 'yy-mm-dd',
+      #   showOn: "button",
+      #   buttonImageOnly: true,
+      #   buttonImage: "/img/calendar.gif"
+      #  }
+      #)
+
+      $(".dialog").dialog(
+        {
+         modal: true, 
+         width: 600,
+         title: "create a new story"
+        }
+      )
