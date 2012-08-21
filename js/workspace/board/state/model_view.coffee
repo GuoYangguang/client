@@ -1,8 +1,8 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "cs!workspace/board/state/story/collection",
-        "cs!workspace/board/state/story/collection_view",
+        "cs!workspace/board/story/collection",
+        "cs!workspace/board/story/collection_view",
         "text!templates/workspace/board/state/state.html",
         "text!templates/workspace/board/state/edit.html",
         "cs!helper"

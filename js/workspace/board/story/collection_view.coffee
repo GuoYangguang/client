@@ -2,8 +2,8 @@ define [
         "jquery",
         "underscore",
         "backbone",
-        "cs!workspace/board/state/story/model_view",
-        "text!templates/workspace/board/state/story/stories.html",
+        "cs!workspace/board/story/model_view",
+        "text!templates/workspace/board/story/stories.html",
         "cs!helper"
        ],
 ($, _, Backbone, StoryView, storiesHtml, Helper)->

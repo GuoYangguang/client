@@ -1,7 +1,7 @@
 define [
         "underscore", 
         "backbone",
-        "cs!workspace/board/state/story/model"
+        "cs!workspace/board/story/model"
        ], 
 (_, Backbone, Story)->
   

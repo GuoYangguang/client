@@ -2,7 +2,7 @@ define [
         "jquery",
         "underscore",
         "backbone",
-        "text!templates/workspace/board/state/story/story.html",
+        "text!templates/workspace/board/story/story.html",
         "cs!helper"
        ],
 ($, _, Backbone, storyHtml, Helper)->
