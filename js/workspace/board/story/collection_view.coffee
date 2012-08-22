@@ -4,9 +4,10 @@ define [
         "backbone",
         "cs!workspace/board/story/model_view",
         "text!templates/workspace/board/story/stories.html",
+        "text!templates/workspace/board/story/dialog.html",
         "cs!helper"
        ],
-($, _, Backbone, StoryView, storiesHtml, Helper)->
+($, _, Backbone, StoryView, storiesHtml, dialogHtml, Helper)->
   
   class StoriesView extends Backbone.View
     tagName: "div"
@@ -16,7 +17,6 @@ define [
 
     events: {
       "click.new-story": "newStory"
-    
     }
     
     fetchStories: ->
@@ -39,7 +39,26 @@ define [
       this
 
     newStory: ->
-      #$(".dialog").dialog('open')  
+      $("body").append(dialogHtml).find("#dialog").dialog(
+        {
+         autoOpen: false,
+         modal: true, 
+         width: 600,
+         title: "create a new story"
+        }
+      )
+      $("#dialog").dialog("option", "buttons", [ 
+         { 
+           text: "Create",
+           click: -> 
+             $(this).dialog("destroy") 
+             $("#dialog").remove()
+         }
+        ]
+      )
+
+      $("#dialog").dialog('open')  
+      
 
       #$(".sedate").datepicker(
       #  {
@@ -49,11 +68,5 @@ define [
       #   buttonImage: "/img/calendar.gif"
       #  }
       #)
-
-      $(".dialog").dialog(
-        {
-         modal: true, 
-         width: 600,
-         title: "create a new story"
-        }
-      )
+    createStory: ->
+      console.log this
