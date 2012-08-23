@@ -39,34 +39,37 @@ define [
       this
 
     newStory: ->
-      $("body").append(dialogHtml).find("#dialog").dialog(
+      storiesView = this
+
+      $("body").append(dialogHtml)
+
+      $(".sedate").datepicker(
         {
-         autoOpen: false,
-         modal: true, 
-         width: 600,
-         title: "create a new story"
+         dateFormat: 'yy-mm-dd',
+         showOn: "button",
+         buttonImageOnly: true,
+         buttonImage: "/img/calendar.gif"
         }
       )
-      $("#dialog").dialog("option", "buttons", [ 
-         { 
-           text: "Create",
-           click: -> 
-             $(this).dialog("destroy") 
-             $("#dialog").remove()
-         }
-        ]
+
+      $("#dialog").dialog(
+        {
+         modal: true, 
+         width: 600,
+         title: "create a new story",
+         buttons: [ 
+           { 
+             text: "Create",
+             click: -> 
+               storiesView.createStory()
+           }
+         ],
+         close: ->
+           $(".sedate").datepicker("destroy")
+           $(this).dialog("destroy") 
+           $("#dialog").remove()
+        }
       )
 
-      $("#dialog").dialog('open')  
-      
-
-      #$(".sedate").datepicker(
-      #  {
-      #   dateFormat: 'yy-mm-dd',
-      #   showOn: "button",
-      #   buttonImageOnly: true,
-      #   buttonImage: "/img/calendar.gif"
-      #  }
-      #)
     createStory: ->
-      console.log this
+      console.log this.collection
