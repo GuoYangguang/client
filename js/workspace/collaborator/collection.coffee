@@ -9,4 +9,4 @@ define ["underscore", "backbone", "cs!workspace/collaborator/model"],
       @workspaceId = options.workspaceId if options.workspaceId
 
     url: ->
-      "/workspaces/#{@workspaceId}/collaborators"
+      "/workspaces/" + @workspaceId + "/collaborators"

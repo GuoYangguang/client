@@ -10,6 +10,7 @@ require ["jquery",
     workspaces = new Workspaces()
     workspacesView = new WorkspacesView({collection: workspaces})
     workspacesView.fetchWorkspaces()
+
     $("#fetch-boards").click ->
       workspace_id = $("#workspace").attr("data-workspace")
       boards = new Boards([], {workspace_id: workspace_id})

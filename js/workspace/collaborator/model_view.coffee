@@ -7,7 +7,8 @@ define [
 ($, _, Backbone, colHtml)->
   
   class CollaboratorView extends Backbone.View
-    
+    tagName: "li" 
+
     render: ->
       data = this.model.toJSON()
       directives = {"span": "last"} 

@@ -7,7 +7,7 @@ define [
        ],
 ($, _, Backbone, CollaboratorView, colsHtml)->
   
-  class CollaboratorsView extend Backbone.View
+  class CollaboratorsView extends Backbone.View
     
     initialize: ->
       this.collection.bind("reset", this.render, this)
@@ -24,6 +24,6 @@ define [
       ulNode = $(this.el).html(colsHtml).find("ul")
       this.collection.each (collaborator)->
         colView = new CollaboratorView(model: collaborator) 
-        unNode.append($(colView.render().el).html())
+        ulNode.append(colView.render().el)
       this
     
