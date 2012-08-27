@@ -65,6 +65,7 @@ define [
            }
          ],
          close: ->
+           $(".sedate").datepicker("disable")
            $(".sedate").datepicker("destroy")
            $(this).dialog("destroy") 
            $("#dialog").remove()
@@ -72,4 +73,4 @@ define [
       )
 
     createStory: ->
-      console.log this.collection
+      this.collection
