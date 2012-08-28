@@ -13,8 +13,13 @@ define [
       this.collection.bind("reset", this.render, this)
     
     fetchCols: ->
-      this.collection.fetch(wait: true, 
-        success: this.successFetch, error: this.errorFetch)
+      this.collection.fetch(
+        {
+         wait: true, 
+         success: this.successFetch, 
+         error: this.errorFetch
+        }
+      )
         
     successFetch: (collection, response)->
 

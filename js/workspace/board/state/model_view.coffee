@@ -75,9 +75,9 @@ define ["jquery",
       workspaceId = $("#workspace").attr("data-workspace")
       boardId = $("#board h3").attr("data-board")
       stories = new Stories(
-         [], 
-         {workspaceId: workspaceId, boardId: boardId, stateId: this.model.id}
-        )
+        [], 
+        {workspaceId: workspaceId, boardId: boardId, stateId: this.model.id}
+      )
       storiesView = new StoriesView({collection: stories})
       storiesView.fetchStories()
       $(this.el).append(storiesView.el)

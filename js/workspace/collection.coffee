@@ -4,6 +4,7 @@ define ["jquery", "underscore", "backbone", "cs!workspace/model"],
     
     model: Workspace
     
-    url: "/workspaces" 
+    url: ->
+      "/workspaces" 
  
         

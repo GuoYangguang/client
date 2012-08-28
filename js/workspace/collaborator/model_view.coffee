@@ -11,7 +11,7 @@ define [
 
     render: ->
       data = this.model.toJSON()
-      directives = {"span": "last"} 
+      directives = {"span": "first"} 
       htmlWithData = $(colHtml).render(data, directives)
       $(this.el).html(htmlWithData)
       this
