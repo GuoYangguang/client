@@ -13,9 +13,6 @@ define [
   
   class WorkspacesView extends Backbone.View 
     
-    tagName: "div"
-    id: "workspace"
-
     initialize: ->
       this.collection.bind("reset", this.render, this)
     
@@ -38,7 +35,6 @@ define [
       collaborators = new Collaborators([], {workspaceId: workspace.id})
       colsView = new CollaboratorsView(collection: collaborators)
       colsView.fetchCols()
-      $("#workspace").append(colsView.el)
 
     errorFetch: (collection, response)->
       helper = new Helper()
@@ -46,9 +42,10 @@ define [
 
     render: ->
       workspace = this.collection.get(1)
-      $(this.el).html(wsHtml).find("#workspace-name")
+      this.$el.html(wsHtml).find("#workspace-name")
         .text(workspace.get("name"))
         .attr("data-workspace", workspace.id)
+      $("#workspace").html(this.$el.html())
       this
  
     fetchBoards: -> 

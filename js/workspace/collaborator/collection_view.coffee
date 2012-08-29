@@ -3,12 +3,14 @@ define [
         "underscore", 
         "backbone", 
         "cs!workspace/collaborator/model_view",
-        "text!templates/workspace/collaborator/collaborators.html"
+        "cs!helper"
        ],
-($, _, Backbone, CollaboratorView, colsHtml)->
+($, _, Backbone, CollaboratorView, Helper)->
   
   class CollaboratorsView extends Backbone.View
     
+    tagName: "ul"
+
     initialize: ->
       this.collection.bind("reset", this.render, this)
     
@@ -22,13 +24,17 @@ define [
       )
         
     successFetch: (collection, response)->
+      $("#errors").remove()
 
     errorFetch: (collection, response)->
+      helper = new Helper()
+      helper.dealErrors("#fetch-boards", response)
 
     render: ->
-      ulNode = $(this.el).html(colsHtml).find("ul")
+      ulNode = this.$el
       this.collection.each (collaborator)->
         colView = new CollaboratorView(model: collaborator) 
-        ulNode.append(colView.render().el)
+        ulNode.append(colView.render().$("li"))
+      $("#workspace-name").after(this.el)
       this
     
