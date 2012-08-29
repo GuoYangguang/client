@@ -10,6 +10,7 @@ define [
   class CollaboratorsView extends Backbone.View
     
     tagName: "ul"
+    className: "collaborators"
 
     initialize: ->
       this.collection.bind("reset", this.render, this)

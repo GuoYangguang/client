@@ -11,7 +11,7 @@ define ["jquery",
 
   class BoardView extends Backbone.View 
     tagName: "li"
-    
+
     initialize: (options)->
       this.model.bind("destroy", this.destroyCal, this)
 
@@ -23,11 +23,11 @@ define ["jquery",
     }
 
     showMenu: ->
-      $(this.el).find("div.board").addClass("color-board").
+      $(this.el).find(".board").addClass("color-board").
         find("span.delete-board").show()
     
     hideMenu: ->
-      $(this.el).find("div.board").removeClass("color-board")
+      $(this.el).find(".board").removeClass("color-board")
         .find("span.delete-board").hide()
 
     showBoard: ->
@@ -71,7 +71,7 @@ define ["jquery",
 
     render: -> 
       data = this.model.toJSON()
-      directives = {"span.board-name": "name"}
+      directives = {".board-name": "name"}
       htmlWithData = $(boardHtml).render(data, directives)
       $(this.el).html(htmlWithData)
       this

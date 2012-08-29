@@ -17,7 +17,7 @@ define [
       this.collection.bind("reset", this.render, this)
     
     events: {
-      "click#fetch-boards": "fetchBoards"
+      "click #fetch-boards": "fetchBoards"
     }
 
     fetchWorkspaces: ->
@@ -45,7 +45,8 @@ define [
       this.$el.html(wsHtml).find("#workspace-name")
         .text(workspace.get("name"))
         .attr("data-workspace", workspace.id)
-      $("#workspace").html(this.$el.html())
+      $("#workspace").html(this.el)
+      this.delegateEvents()
       this
  
     fetchBoards: -> 

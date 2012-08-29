@@ -11,14 +11,15 @@ define ["jquery",
 ($, _, Backbone, Helper, BoardView, States, StatesView, showBoardHtml, boardsHtml) ->
 
   class BoardsView extends Backbone.View
-    tagName: "div"
+    tagName: "ul"
+    id: "list-boards"
 
     initialize: ->
       this.collection.bind("reset", this.render, this)
       this.collection.bind("add", this.showBoard, this)
     
     events: {
-      "click #create-board-btn": "createBoard"
+      "click #create-board-btn": "createBoard",
       "click #more-boards": "fetchBoards" 
     }
 
@@ -38,15 +39,15 @@ define ["jquery",
 
     errorFetch: (collection, response) ->
       helper = new Helper()
-      helper.dealErrors("#board-data", response)
+      helper.dealErrors("#boards", response)
 
     render: ->
-      $(this.el).html(boardsHtml)
-      $("#board-data").html(this.el)
-      listBoardsNode = $("#list-boards")
+      listBoardsNode = this.$el
       this.collection.each (board)->
         boardView = new BoardView({model: board})
         listBoardsNode.append(boardView.render().el)
+      $("#boards").html(this.el).append(boardsHtml)
+
       this.delegateEvents()
       this
 
@@ -54,7 +55,7 @@ define ["jquery",
       data = board.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
       htmlWithData = $(showBoardHtml).render(data, directives)
-      $("#board-data").html(htmlWithData)
+      $("#boards").html(htmlWithData)
       
       workspaceId = $("#workspace").attr("data-workspace")
       states = new States([], {workspaceId: workspaceId , boardId: board.id})

@@ -1,4 +1,8 @@
 
+.collaborators{
+  margin-left: 500px;
+}
+
 #fetch-boards{
   cursor: pointer;
 }
