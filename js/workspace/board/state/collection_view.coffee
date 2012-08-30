@@ -50,7 +50,7 @@ define ["jquery",
 
     errorFetch: (collection, response)->
       helper = new Helper()
-      helper.dealErrors("#board", response)
+      helper.dealErrors("#board", response, false)
 
     render: ->
       $(this.el).html(statesHtml)
@@ -58,7 +58,7 @@ define ["jquery",
       this.collection.each (state)->
         stateView = new StateView({model: state})
         appendNode.append(stateView.render().el)
-      $("#board-data").append(this.el)
+      $("#boards").append(this.el)
       
       this
     

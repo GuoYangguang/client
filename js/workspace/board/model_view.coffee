@@ -40,9 +40,9 @@ define ["jquery",
       data = model.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
       htmlWithData = $(showBoardHtml).render(data, directives)
-      $("#board-data").html(htmlWithData)
+      $("#boards").html(htmlWithData)
       
-      workspaceId = $("#workspace").attr("data-workspace")
+      workspaceId = $("#workspace-name").attr("data-workspace")
       states = new States([], {workspaceId: workspaceId , boardId: model.id})
       statesView = new StatesView({collection: states})
       statesView.fetchStates()
@@ -71,7 +71,7 @@ define ["jquery",
 
     render: -> 
       data = this.model.toJSON()
-      directives = {".board-name": "name"}
+      directives = {"span.board-name": "name"}
       htmlWithData = $(boardHtml).render(data, directives)
-      $(this.el).html(htmlWithData)
+      this.$el.html(htmlWithData)
       this

@@ -3,7 +3,7 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
     
     errorsTemplate: $(errorsHtml)
 
-    dealErrors: (showSelector, response)-> 
+    dealErrors: (showSelector, response, before=true)-> 
       $("#errors").remove()
     
       status = response.status
@@ -12,7 +12,11 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
           errorsObj = {"errors": "not allowed or resources not exist."}
           directives = {"span": "errors"}
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
-          $(showSelector).before(htmlWithData)
+          if before
+            $(showSelector).before(htmlWithData)
+          else
+            $(showSelector).after(htmlWithData)
+           
         when 400
           responseText = JSON.parse(response.responseText)
           errorsObj = {"errors": new Array()}
@@ -27,4 +31,8 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
             }
           }
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
-          $(showSelector).before(htmlWithData)
+          if before
+            $(showSelector).before(htmlWithData)
+          else
+            $(showSelector).after(htmlWithData)
+            

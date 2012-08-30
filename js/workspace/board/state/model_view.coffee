@@ -72,7 +72,7 @@ define ["jquery",
       htmlWithData = $(stateHtml).render(data, directives)
       $(this.el).html(htmlWithData)
 
-      workspaceId = $("#workspace").attr("data-workspace")
+      workspaceId = $("#workspace-name").attr("data-workspace")
       boardId = $("#board h3").attr("data-board")
       stories = new Stories(
         [], 
