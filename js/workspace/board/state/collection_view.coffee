@@ -29,7 +29,16 @@ define ["jquery",
     
     successCreate: (model, response)->
       $(".errors").remove()
-      
+
+      workspaceId = $("#workspace-name").attr("data-workspace")
+      boardId = $("#board h3").attr("data-board")
+      stories = new Stories(
+          [], 
+          {workspaceId: workspaceId, boardId: boardId, stateId: model.id}
+        )
+      storiesView = new StoriesView({collection: stories})
+      storiesView.render()
+
     errorCreate: (model, response)->
       helper = new Helper()
       helper.dealErrors("#create-state", response)

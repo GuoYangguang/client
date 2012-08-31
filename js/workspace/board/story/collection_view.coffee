@@ -10,7 +10,6 @@ define [
 ($, _, Backbone, StoryView, storiesHtml, dialogHtml, Helper)->
   
   class StoriesView extends Backbone.View
-    tagName: "div"
 
     initialize: ->
       this.collection.bind("reset", this.render, this) 
@@ -74,4 +73,4 @@ define [
       )
 
     createStory: ->
-      this.collection
+      console.log this.collection.stateId
