@@ -25,7 +25,7 @@ define [
       ) 
     
     successFetch: (collection, response)->
-      $("#errors").remove()
+      $(".errors").remove()
 
     errorFetch: (collection, response)->
       helper = new Helper()
@@ -36,6 +36,7 @@ define [
       this.collection.each (story)->
         storyView = new StoryView({model: story}) 
         appendNode.append(storyView.render().el)
+      $("#state_#{this.collection.stateId}").append(this.el)
       this
 
     newStory: ->

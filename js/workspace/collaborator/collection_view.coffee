@@ -25,7 +25,7 @@ define [
       )
         
     successFetch: (collection, response)->
-      $("#errors").remove()
+      $(".errors").remove()
 
     errorFetch: (collection, response)->
       helper = new Helper()

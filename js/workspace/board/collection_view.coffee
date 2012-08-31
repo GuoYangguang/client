@@ -33,7 +33,7 @@ define ["jquery",
         
     successFetch: (collection, response) ->
       collection.currentPage++
-      $("#errors").remove()   
+      $(".errors").remove()   
 
     errorFetch: (collection, response) ->
       helper = new Helper()
@@ -65,11 +65,11 @@ define ["jquery",
         {wait: true, success: this.successCreate, error: this.errorCreate})
     
     successCreate: (model, response)->
-      $("#errors").remove() 
+      $(".errors").remove() 
       workspaceId = $("#workspace-name").attr("data-workspace")
       states = new States([], {workspaceId: workspaceId , boardId: model.id})
       statesView = new StatesView({collection: states})
-      statesView.fetchStates()
+      statesView.render()
 
     errorCreate: (model, response)->
       helper = new Helper()        

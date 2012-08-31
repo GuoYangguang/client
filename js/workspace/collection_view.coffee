@@ -30,7 +30,7 @@ define [
       )
 
     successFetch: (collection, response)->
-      $("#errors").remove()
+      $(".errors").remove()
       workspace = collection.get(1)
       collaborators = new Collaborators([], {workspaceId: workspace.id})
       colsView = new CollaboratorsView(collection: collaborators)

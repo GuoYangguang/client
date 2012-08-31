@@ -42,7 +42,7 @@
  list-style: none;
 }
 
-.state-stories{
+#states-stories li{
   float: left;
   width: 200px;
   height: 600px;
@@ -56,11 +56,11 @@
   margin-left: 10px;
 }
 
-.state{
+.state-name{
   cursor: pointer;
 }
 
-.state form {
+.state-name form {
   display: inline;
 }
 

@@ -4,8 +4,7 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
     errorsTemplate: $(errorsHtml)
 
     dealErrors: (showSelector, response, before=true)-> 
-      $("#errors").remove()
-    
+
       status = response.status
       switch status
         when 404

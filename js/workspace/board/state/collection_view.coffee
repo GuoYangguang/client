@@ -2,10 +2,12 @@ define ["jquery",
         "underscore", 
         "backbone", 
         "cs!workspace/board/state/model_view",
+        "cs!workspace/board/story/collection",
+        "cs!workspace/board/story/collection_view",
         "text!templates/workspace/board/state/states.html",
         "cs!helper"
        ], 
-($, _, Backbone, StateView, statesHtml, Helper) ->
+($, _, Backbone, StateView, Stories, StoriesView, statesHtml, Helper) ->
 
   class StatesView extends Backbone.View
     tagName: "div"
@@ -26,7 +28,7 @@ define ["jquery",
         {wait: true, success: this.successCreate, error: this.errorCreate})
     
     successCreate: (model, response)->
-      $("#errors").remove()
+      $(".errors").remove()
       
     errorCreate: (model, response)->
       helper = new Helper()
@@ -46,7 +48,17 @@ define ["jquery",
       )
 
     successFetch: (collection, response)->
-      $("#errors").remove()
+      $(".errors").remove()
+
+      workspaceId = $("#workspace-name").attr("data-workspace")
+      boardId = $("#board h3").attr("data-board")
+      collection.each (state)->
+        stories = new Stories(
+          [], 
+          {workspaceId: workspaceId, boardId: boardId, stateId: state.id}
+        )
+        storiesView = new StoriesView({collection: stories})
+        storiesView.fetchStories()
 
     errorFetch: (collection, response)->
       helper = new Helper()

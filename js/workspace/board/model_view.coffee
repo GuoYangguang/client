@@ -35,7 +35,7 @@ define ["jquery",
       success: this.successFetch, error: this.errorFetch})
     
     successFetch: (model, response)->
-      $("#errors").remove()
+      $(".errors").remove()
       
       data = model.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
@@ -60,7 +60,7 @@ define ["jquery",
       success: this.successDel, error: this.errorDel})
 
     successDel: (model, response)-> 
-      $("#errors").remove()
+      $(".errors").remove()
 
     errorDel: (model, response)->
       helper = new Helper()  

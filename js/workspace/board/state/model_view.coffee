@@ -1,26 +1,29 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "cs!workspace/board/story/collection",
-        "cs!workspace/board/story/collection_view",
         "text!templates/workspace/board/state/state.html",
         "text!templates/workspace/board/state/edit.html",
         "cs!helper"
        ], 
-($, _, Backbone, Stories, StoriesView, stateHtml, editHtml, Helper) ->
+($, _, Backbone, stateHtml, editHtml, Helper) ->
 
   class StateView extends Backbone.View
     tagName: "li"
-    className: "state-stories"
     
+    attributes: ->
+      {
+       "id": "state_#{this.model.id}", 
+       "data-state": this.model.id
+      }
+
     initialize: ->
       this.model.bind("destroy", this.destroyCal, this)
       this.model.bind("change", this.changeCal, this)
 
     events: {
       "click .delete-state": "confirm", 
-      "dblclick .state": "editState",
-      "submit .state form": "updateState"
+      "dblclick .state-name": "editState",
+      "submit .state-name form": "updateState"
     }
 
     confirm: ->
@@ -33,7 +36,7 @@ define ["jquery",
       )
     
     successDel: (model, response)->
-      $("#errors").remove()
+      $(".errors").remove()
 
     errorDel: (model, response)->
       helper = new Helper()
@@ -43,20 +46,20 @@ define ["jquery",
       this.remove() 
     
     editState: ->
-      node = $(this.el).find(".state")
+      node = $(this.el).find(".state-name")
       val = node.text()
       node.html(editHtml)
       node.find("input").val(val)
     
     updateState: ->
-      val = $(this.el).find(".state input").val()
+      val = $(this.el).find(".state-name input").val()
       this.model.save(
         {name: val}, 
         {wait:true, success: this.successUpd, error: this.errorUpd}
       )
     
     successUpd: (model, response)->
-      $("#errors").remove()
+      $(".errors").remove()
 
     errorUpd: (model, response)->
       helper = new Helper()
@@ -64,21 +67,11 @@ define ["jquery",
     
     changeCal: ->
       name = this.model.get("name")
-      $(this.el).find(".state").html(name)
+      $(this.el).find(".state-name").html(name)
 
     render: ->
       data = this.model.toJSON()
-      directives = {"span.state": "name"}
+      directives = {"span.state-name": "name"}
       htmlWithData = $(stateHtml).render(data, directives)
       $(this.el).html(htmlWithData)
-
-      workspaceId = $("#workspace-name").attr("data-workspace")
-      boardId = $("#board h3").attr("data-board")
-      stories = new Stories(
-        [], 
-        {workspaceId: workspaceId, boardId: boardId, stateId: this.model.id}
-      )
-      storiesView = new StoriesView({collection: stories})
-      storiesView.fetchStories()
-      $(this.el).append(storiesView.el)
       this
