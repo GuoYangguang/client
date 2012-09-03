@@ -2,10 +2,11 @@ define [
         "jquery", 
         "underscore", 
         "backbone", 
+        "cs!workspace/collaborator/collection",
         "cs!workspace/collaborator/model_view",
         "cs!helper"
        ],
-($, _, Backbone, CollaboratorView, Helper)->
+($, _, Backbone, Collaborators, CollaboratorView, Helper)->
   
   class CollaboratorsView extends Backbone.View
     
@@ -26,6 +27,7 @@ define [
         
     successFetch: (collection, response)->
       $(".errors").remove()
+      Collaborators.collaborators = collection
 
     errorFetch: (collection, response)->
       helper = new Helper()

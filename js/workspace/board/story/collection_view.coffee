@@ -3,11 +3,12 @@ define [
         "underscore",
         "backbone",
         "cs!workspace/board/story/model_view",
+        "cs!workspace/collaborator/collection",
         "text!templates/workspace/board/story/stories.html",
         "text!templates/workspace/board/story/dialog.html",
         "cs!helper"
        ],
-($, _, Backbone, StoryView, storiesHtml, dialogHtml, Helper)->
+($, _, Backbone, StoryView, Collaborators, storiesHtml, dialogHtml, Helper)->
   
   class StoriesView extends Backbone.View
 
@@ -41,7 +42,17 @@ define [
     newStory: ->
       storiesView = this
 
-      $("body").append(dialogHtml)
+      cols = Collaborators.collaborators
+      data = {performers: cols.pluck("first")}
+      directives = {
+        "li": {
+          "performer<-performers": {
+            "span.performer": "performer"
+          }  
+        } 
+      }
+      htmlWithData = $(dialogHtml).render(data, directives)
+      $("body").append(htmlWithData)
 
       $(".sedate").datepicker(
         {
@@ -73,4 +84,4 @@ define [
       )
 
     createStory: ->
-      console.log this.collection.stateId
+      #console.log this.collection.stateId
