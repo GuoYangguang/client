@@ -13,6 +13,6 @@ define [
     render: ->
       data = this.model.toJSON()
       directives = {"span": "name"}
-      htmlWithData = $(storyHtml).render(data, redirectives)
+      htmlWithData = $(storyHtml).render(data, directives)
       $(this.el).html(htmlWithData)
       this

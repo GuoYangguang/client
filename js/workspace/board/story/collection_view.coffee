@@ -43,45 +43,67 @@ define [
       storiesView = this
 
       cols = Collaborators.collaborators
-      data = {performers: cols.pluck("first")}
-      directives = {
-        "li": {
-          "performer<-performers": {
-            "span.performer": "performer"
-          }  
-        } 
-      }
-      htmlWithData = $(dialogHtml).render(data, directives)
-      $("body").append(htmlWithData)
-
-      $(".sedate").datepicker(
-        {
-         dateFormat: 'yy-mm-dd',
-         showOn: "button",
-         buttonImageOnly: true,
-         buttonImage: "/img/calendar.gif"
+      if cols.isEmpty()
+        alert "No collaborators in the workspace!"
+      else
+        data = {performers: cols.pluck("first")}
+        directives = {
+          "li": {
+            "performer<-performers": {
+              "span.performer": "performer"
+            }  
+          } 
         }
-      )
+        htmlWithData = $(dialogHtml).render(data, directives)
+        $("body").append(htmlWithData)
 
-      $("#dialog").dialog(
-        {
-         modal: true, 
-         width: 600,
-         title: "create a new story",
-         buttons: [ 
-           { 
-             text: "Create",
-             click: -> 
-               storiesView.createStory()
-           }
-         ],
-         close: ->
-           $(".sedate").datepicker("disable")
-           $(".sedate").datepicker("destroy")
-           $(this).dialog("destroy") 
-           $("#dialog").remove()
-        }
-      )
+        $(".sedate").datepicker(
+          {
+           dateFormat: 'yy-mm-dd',
+           showOn: "button",
+           buttonImageOnly: true,
+           buttonImage: "/img/calendar.gif"
+          }
+        )
+
+        $("#dialog").dialog(
+          {
+           modal: true, 
+           width: 600,
+           title: "create a new story",
+           buttons: [ 
+             { 
+               text: "Create",
+               click: -> 
+                 storiesView.createStory()
+             }
+           ],
+           close: ->
+             $(".sedate").datepicker("disable")
+             $(".sedate").datepicker("destroy")
+             $(this).dialog("destroy") 
+             $("#dialog").remove()
+          }
+        )
 
     createStory: ->
-      #console.log this.collection.stateId
+      storyName = $("#story-name").val()
+      console.log $(".select-performer").attr("checked")
+      #this.collection.create(
+      #  {
+      #    story: {
+      #      name: storyName
+      #    }, 
+      #    users: [1, 2]
+      #  },
+      #  {
+      #   wait: true,
+      #   success: this.successCreate, 
+      #   error: this.errorCreate
+      #  }
+      #)
+    
+    successCreate: (model, response)->
+
+
+    errorCreate: (model, response)->
