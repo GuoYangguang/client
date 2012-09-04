@@ -9,6 +9,15 @@ define [
   
   class StoryView extends Backbone.View
     tagName: "li"
+    className: "story"
+    
+    events: {
+      "click.story": "showStory"
+    }
+    
+
+    showStory: ->
+      alert "hello"
 
     render: ->
       data = this.model.toJSON()

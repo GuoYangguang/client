@@ -33,7 +33,6 @@ ul{
   width: 800px;
   height: 650px;
   overflow: auto;
-  overflow-y: hidden;
 }
 
 
@@ -42,10 +41,10 @@ ul{
  list-style: none;
 }
 
-#states-stories li{
+li[data-state]{
   float: left;
   width: 200px;
-  height: 600px;
+  min-height: 400px;
   margin-right: 10px;
   background-color: #eee;
   text-align: center;
@@ -69,5 +68,22 @@ ul{
 }
 
 .new-story{
+  border: 1px solid gray;
   cursor: pointer;
+}
+
+#stories{
+  width: 90%;
+  margin-left: 5%;
+}
+
+#stories ul {
+  padding: 0;
+}
+
+.story{
+  border: 1px solid gray;
+  background-color: white;
+  padding: 1px;
+  margin-bottom: 5px;
 }

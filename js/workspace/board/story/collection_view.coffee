@@ -11,6 +11,8 @@ define [
 ($, _, Backbone, StoryView, Collaborators, storiesHtml, dialogHtml, Helper)->
   
   class StoriesView extends Backbone.View
+    tagName: "div"
+    id: "stories"
 
     initialize: ->
       this.collection.bind("reset", this.render, this) 
@@ -89,19 +91,19 @@ define [
     createStory: ->
       storyName = $("#story-name").val()
       console.log $(".select-performer").attr("checked")
-      #this.collection.create(
-      #  {
-      #    story: {
-      #      name: storyName
-      #    }, 
-      #    users: [1, 2]
-      #  },
-      #  {
-      #   wait: true,
-      #   success: this.successCreate, 
-      #   error: this.errorCreate
-      #  }
-      #)
+      this.collection.create(
+        {
+          story: {
+            name: storyName
+          }, 
+          users: [0]
+        },
+        {
+         wait: true,
+         success: this.successCreate, 
+         error: this.errorCreate
+        }
+      )
     
     successCreate: (model, response)->
 
