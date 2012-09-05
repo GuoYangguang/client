@@ -68,22 +68,21 @@ li[data-state]{
 }
 
 .new-story{
-  border: 1px solid gray;
   cursor: pointer;
 }
 
-#stories{
+.stories{
   width: 90%;
   margin-left: 5%;
 }
 
-#stories ul {
+.stories ul{
   padding: 0;
 }
 
-.story{
-  border: 1px solid gray;
+.story p{
+  border: 3px solid gray;
   background-color: white;
-  padding: 1px;
-  margin-bottom: 5px;
+  padding: 3px;
+  text-align: left;
 }

@@ -12,13 +12,14 @@ define [
   
   class StoriesView extends Backbone.View
     tagName: "div"
-    id: "stories"
+    className: "stories"
 
     initialize: ->
       this.collection.bind("reset", this.render, this) 
+      this.collection.bind("add", this.prependStory, this)
 
     events: {
-      "click.new-story": "newStory"
+      "click p.new-story": "newStory"
     }
     
     fetchStories: ->
@@ -48,11 +49,11 @@ define [
       if cols.isEmpty()
         alert "No collaborators in the workspace!"
       else
-        data = {performers: cols.pluck("first")}
+        data = {collaborators: cols.pluck("first")}
         directives = {
           "li": {
-            "performer<-performers": {
-              "span.performer": "performer"
+            "collaborator<-collaborators": {
+              "span.collaborator": "collaborator"
             }  
           } 
         }
@@ -81,10 +82,7 @@ define [
              }
            ],
            close: ->
-             $(".sedate").datepicker("disable")
-             $(".sedate").datepicker("destroy")
-             $(this).dialog("destroy") 
-             $("#dialog").remove()
+             StoriesView.destroyDialog()
           }
         )
 
@@ -96,7 +94,7 @@ define [
           story: {
             name: storyName
           }, 
-          users: [0]
+          users: [1, 2]
         },
         {
          wait: true,
@@ -105,7 +103,21 @@ define [
         }
       )
     
-    successCreate: (model, response)->
+    prependStory: (story)->
+      storyView = new StoryView({model: story}) 
+      this.$("ul").prepend(storyView.render().el)
 
+    successCreate: (model, response)->
+      $(".errors").remove()
+      StoriesView.destroyDialog()
+      
 
     errorCreate: (model, response)->
+      helper = new Helper()
+      helper.dealErrors("#dialog", response)
+
+    @destroyDialog: ->
+      $(".sedate").datepicker("disable")
+      $(".sedate").datepicker("destroy")
+      $("#dialog").dialog("destroy")
+      $("#dialog").remove()

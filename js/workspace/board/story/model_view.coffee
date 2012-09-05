@@ -3,9 +3,10 @@ define [
         "underscore",
         "backbone",
         "text!templates/workspace/board/story/story.html",
+        "text!templates/workspace/board/story/show_story.html",
         "cs!helper"
        ],
-($, _, Backbone, storyHtml, Helper)->
+($, _, Backbone, storyHtml, showStoryHtml, Helper)->
   
   class StoryView extends Backbone.View
     tagName: "li"
@@ -15,9 +16,29 @@ define [
       "click.story": "showStory"
     }
     
-
     showStory: ->
-      alert "hello"
+      data = this.model.toJSON() 
+      directives = {
+        ".storyName": "name", 
+        "ul.performers li": {
+          "performer<-users": {
+            "span": "performer.first"
+          }  
+        },
+        ".startDate": "start",
+        ".endDate": "end"
+      }
+      htmlWithData = $(showStoryHtml).render(data, directives)
+      $("body").append(htmlWithData)
+      $("#show-story").dialog(
+        {
+         modal: true,
+         width: 600,
+         close: ->
+           $("#show-story").dialog("destroy") 
+           $("#show-story").remove() 
+        }
+      )
 
     render: ->
       data = this.model.toJSON()
