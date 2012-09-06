@@ -49,11 +49,12 @@ define [
       if cols.isEmpty()
         alert "No collaborators in the workspace!"
       else
-        data = {collaborators: cols.pluck("first")}
+        data = {collaborators: cols.toJSON()}
         directives = {
           "li": {
             "collaborator<-collaborators": {
-              "span.collaborator": "collaborator"
+              "span.collaborator": "collaborator.first",
+              "span input@data-user": "collaborator.id"
             }  
           } 
         }
@@ -87,14 +88,18 @@ define [
         )
 
     createStory: ->
-      storyName = $("#story-name").val()
-      console.log $(".select-performer").attr("checked")
+      performers = new Array()
+      $(".select-collaborator:checked").each ->
+        performers.push($(this).attr("data-user"))
+
       this.collection.create(
         {
-          story: {
-            name: storyName
-          }, 
-          users: [1, 2]
+         story: {
+           name: $("#story-name").val(),
+           start: $("#start-date").val(),
+           end: $("#end-date").val()
+         }, 
+         users: performers 
         },
         {
          wait: true,

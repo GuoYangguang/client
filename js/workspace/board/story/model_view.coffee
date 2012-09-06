@@ -33,7 +33,7 @@ define [
       $("#show-story").dialog(
         {
          modal: true,
-         width: 600,
+         width: 400,
          close: ->
            $("#show-story").dialog("destroy") 
            $("#show-story").remove() 
