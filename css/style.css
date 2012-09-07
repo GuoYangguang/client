@@ -86,3 +86,13 @@ li[data-state]{
   padding: 3px;
   text-align: left;
 }
+
+.story-name{
+  cursor: pointer;
+}
+
+.delete-story{
+  margin-left: 10px;
+  cursor: pointer;
+  display: none;
+}
