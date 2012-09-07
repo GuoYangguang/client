@@ -61,15 +61,6 @@ define [
         htmlWithData = $(dialogHtml).render(data, directives)
         $("body").append(htmlWithData)
 
-        $(".sedate").datepicker(
-          {
-           dateFormat: 'yy-mm-dd',
-           showOn: "button",
-           buttonImageOnly: true,
-           buttonImage: "/img/calendar.gif"
-          }
-        )
-
         $("#dialog").dialog(
           {
            modal: true, 
@@ -82,6 +73,16 @@ define [
                  storiesView.createStory()
              }
            ],
+           open: ->
+             $(".sedate").datepicker(
+               {
+                dateFormat: 'yy-mm-dd',
+                showOn: "button",
+                buttonImageOnly: true,
+                buttonImage: "/img/calendar.gif"
+               }
+             )     
+           , 
            close: ->
              StoriesView.destroyDialog()
           }
