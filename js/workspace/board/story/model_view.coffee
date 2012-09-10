@@ -14,6 +14,7 @@ define [
     
     initialize: ->
       this.model.bind("destroy", this.removeStory, this)
+      this.$el.draggable()
 
     events: {
       "click .story-name": "showStory",

@@ -17,6 +17,11 @@ define [
     initialize: ->
       this.collection.bind("reset", this.render, this) 
       this.collection.bind("add", this.prependStory, this)
+      this.$el.droppable(
+        {
+         drop: -> alert("i am dropped")
+        }
+      )
 
     events: {
       "click p.new-story": "newStory"
