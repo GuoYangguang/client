@@ -19,7 +19,7 @@ define [
       this.collection.bind("add", this.prependStory, this)
       this.$el.droppable(
         {
-         drop: -> alert("i am dropped")
+         drop: this.stateStory 
         }
       )
 
@@ -126,6 +126,9 @@ define [
     errorCreate: (model, response)->
       helper = new Helper()
       helper.dealErrors("#dialog", response)
+    
+    stateStory: ->
+      console.log(this.collection)
 
     @destroyDialog: ->
       $(".sedate").datepicker("disable")

@@ -14,7 +14,14 @@ define [
     
     initialize: ->
       this.model.bind("destroy", this.removeStory, this)
-      this.$el.draggable()
+      this.$el.draggable(
+        {
+         delay: 500,
+         cursor: "crosshair",
+         revert: "invalid",
+         stack: this.$el
+        }
+      )
 
     events: {
       "click .story-name": "showStory",
