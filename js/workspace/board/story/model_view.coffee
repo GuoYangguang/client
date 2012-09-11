@@ -16,7 +16,7 @@ define [
       this.model.bind("destroy", this.removeStory, this)
       this.$el.draggable(
         {
-         delay: 500,
+         distance: 200,
          cursor: "crosshair",
          revert: "invalid",
          stack: this.$el
@@ -27,7 +27,8 @@ define [
       "click .story-name": "showStory",
       "mouseover p": "showMenu", 
       "mouseout p": "hideMenu",
-      "click .delete-story": "confirmDel"
+      "click .delete-story": "confirmDel",
+      "dragstop": "dragStop"
     }
     
     showStory: ->
@@ -90,3 +91,7 @@ define [
       htmlWithData = $(storyHtml).render(data, directives)
       $(this.el).html(htmlWithData)
       this
+
+    dragStop: ->
+      console.log this
+      

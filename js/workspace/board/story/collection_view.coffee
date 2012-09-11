@@ -17,14 +17,11 @@ define [
     initialize: ->
       this.collection.bind("reset", this.render, this) 
       this.collection.bind("add", this.prependStory, this)
-      this.$el.droppable(
-        {
-         drop: this.stateStory 
-        }
-      )
+      this.$el.droppable()
 
     events: {
-      "click p.new-story": "newStory"
+      "click p.new-story": "newStory",
+      "drop": "stateStory"
     }
     
     fetchStories: ->
@@ -127,7 +124,9 @@ define [
       helper = new Helper()
       helper.dealErrors("#dialog", response)
     
-    stateStory: ->
+    stateStory: (event, ui)->
+      #console.log event
+      #console.log ui.draggable
       console.log(this.collection)
 
     @destroyDialog: ->
