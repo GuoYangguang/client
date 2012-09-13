@@ -28,7 +28,7 @@ define [
       "mouseover p": "showMenu", 
       "mouseout p": "hideMenu",
       "click .delete-story": "confirmDel",
-      "dragstop": "dragStop"
+      "dragstart": "dragStart"
     }
     
     showStory: ->
@@ -92,6 +92,7 @@ define [
       $(this.el).html(htmlWithData)
       this
 
-    dragStop: ->
-      console.log this
+    dragStart: (event, ui)->
+      StoryView.draggedStory = this
       
+     

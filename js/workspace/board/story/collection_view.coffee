@@ -125,9 +125,21 @@ define [
       helper.dealErrors("#dialog", response)
     
     stateStory: (event, ui)->
-      #console.log event
-      #console.log ui.draggable
-      console.log(this.collection)
+      storyView = StoryView.draggedStory
+      story = storyView.model.clone()
+      story.urlRoot = this.collection.url()
+      story.save(
+        {
+         from_state: storyView.model.collection.stateId
+        }
+      )
+      
+      #this.collection.add(story)
+      #story.collection = this.collection
+      #console.log this.collection
+      #console.log story.collection
+      #this.collection.url()
+      
 
     @destroyDialog: ->
       $(".sedate").datepicker("disable")
