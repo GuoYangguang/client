@@ -125,21 +125,36 @@ define [
       helper.dealErrors("#dialog", response)
     
     stateStory: (event, ui)->
-      storyView = StoryView.draggedStory
-      story = storyView.model.clone()
-      story.urlRoot = this.collection.url()
-      story.save(
-        {
-         from_state: storyView.model.collection.stateId
-        }
-      )
-      
-      #this.collection.add(story)
-      #story.collection = this.collection
-      #console.log this.collection
-      #console.log story.collection
-      #this.collection.url()
-      
+      fromStoryView = StoryView.draggedStory
+      fromStory = fromStoryView.model
+      fromStories = fromStoryView.model.collection
+      story = fromStoryView.model.clone()
+  
+      unless this.collection.stateId is fromStories.stateId
+        story.urlRoot = this.collection.url()
+        story.bind("change", this.changeCal, this)
+
+        story.save(
+          {
+           from_state: fromStories.stateId
+          },
+          {
+           wait: true,
+           success: (model, response)->
+             fromStories.remove(fromStory)
+             fromStoryView.removeStory()
+             $(".errors").remove() 
+           ,
+           error: (model, response)->
+             helper = new Helper() 
+             helper.dealErrors("#states", response)
+          }
+        )
+      else
+        this.render() 
+ 
+    changeCal: (story)->
+      this.collection.add(story)
 
     @destroyDialog: ->
       $(".sedate").datepicker("disable")
