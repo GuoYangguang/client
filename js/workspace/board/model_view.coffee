@@ -48,6 +48,7 @@ define ["jquery",
       statesView.fetchStates()
 
     errorFetch: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#list-boards", response)
     
@@ -63,6 +64,8 @@ define ["jquery",
       $(".errors").remove()
 
     errorDel: (model, response)->
+      $(".errors").remove()
+      helper = new Helper()
       helper = new Helper()  
       helper.dealErrors("#list-boards", response)      
    

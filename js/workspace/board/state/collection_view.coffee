@@ -40,6 +40,7 @@ define ["jquery",
       storiesView.render()
 
     errorCreate: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#create-state", response)
    
@@ -70,6 +71,7 @@ define ["jquery",
         storiesView.fetchStories()
 
     errorFetch: (collection, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#board", response, false)
 

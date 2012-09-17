@@ -39,6 +39,7 @@ define ["jquery",
       $(".errors").remove()
 
     errorDel: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#states", response)
 
@@ -62,6 +63,7 @@ define ["jquery",
       $(".errors").remove()
 
     errorUpd: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#states", response)
     

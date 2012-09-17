@@ -37,6 +37,7 @@ define [
       colsView.fetchCols()
 
     errorFetch: (collection, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#workspace", response)
 

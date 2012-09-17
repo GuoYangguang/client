@@ -79,6 +79,7 @@ define [
       $(".errors").remove()
 
     errorDestroy: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#states", response)
 

@@ -33,6 +33,7 @@ define [
       $(".errors").remove()
 
     errorFetch: (collection, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#states", response)
 
@@ -121,6 +122,7 @@ define [
       
 
     errorCreate: (model, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#dialog", response)
     
@@ -146,6 +148,7 @@ define [
              $(".errors").remove() 
            ,
            error: (model, response)->
+             $(".errors").remove()
              helper = new Helper() 
              helper.dealErrors("#states", response)
           }

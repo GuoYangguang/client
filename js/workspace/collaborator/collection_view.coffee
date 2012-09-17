@@ -30,6 +30,7 @@ define [
       Collaborators.collaborators = collection
 
     errorFetch: (collection, response)->
+      $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#fetch-boards", response)
 
