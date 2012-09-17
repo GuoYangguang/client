@@ -30,8 +30,8 @@ ul{
 }
 
 #states-scroller{
-  width: 800px;
-  height: 650px;
+  width: 600px;
+  height: 550px;
   overflow: auto;
 }
 
@@ -44,7 +44,7 @@ ul{
 li[data-state]{
   float: left;
   width: 200px;
-  min-height: 400px;
+  min-height: 500px;
   margin-right: 10px;
   background-color: #eee;
   text-align: center;
