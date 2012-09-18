@@ -16,8 +16,8 @@ define [
       this.model.bind("destroy", this.removeStory, this)
       this.$el.draggable(
         {
-         distance: 200,
-         cursor: "crosshair",
+         cancel: "span",
+         distance: 100,
          revert: "invalid",
          stack: this.$el
         }

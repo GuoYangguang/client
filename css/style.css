@@ -78,6 +78,7 @@ li[data-state]{
 
 .stories ul{
   padding: 0;
+  min-height: 350px;
 }
 
 .story p{
