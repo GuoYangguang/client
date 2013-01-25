@@ -1,12 +1,11 @@
-require ["jquery", 
-         "cs!workspace/collection", 
-         "cs!workspace/collection_view"
+require ['jquery', 
+         'backbone',
+         'cs!router'
         ],
-($, Workspaces, WorkspacesView) ->
-  
+($, Backbone, Router) ->
+
   $(document).ready ->
-    workspaces = new Workspaces()
-    workspacesView = new WorkspacesView({collection: workspaces})
-    workspacesView.fetchWorkspaces()
-    
+    new Router()
+    Backbone.history.start({pushState: true, root: '/w/'})
+       
     

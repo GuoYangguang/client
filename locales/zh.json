@@ -1,0 +1,428 @@
+{
+  "login" : {
+    "header"                : "欢迎来到音智达市场自动化平台，以工作为友。",
+    "description"           : "有效地运用社区智能，与你的团队，客户和合作伙伴进行互动。直观的企业社会化数据和私有的工作空间让知识随你而动。",
+    "e-mail"                : "电子邮件",
+    "password"              : "密码",
+    "remember_me"           : "记住密码",
+    "sign_in"               : "登入",
+    "forgot_password"       : "忘记密码?",
+    "your_name"             : "您的名字",
+    "your_email"            : "您的电子邮件",
+    "your_company"          : "您的公司",
+    "request_invitation"    : "获得邀请"
+  },
+  "signup" : {
+    "header"                : "在音智达市场自动化平台建立您的帐号",
+    "first_name"            : "名",
+    "last_name"             : "姓",
+    "email"                 : "电子邮件",
+    "new_password"          : "新密码",
+    "accept"                : "建立帐号时我已经阅读并接受",
+    "terms"                 : "使用条款",
+    "create"                : "建立帐号",
+    "alerter" : {
+      "succeed": {
+        "created"           : "您的帐号已成功创建。",
+        "start"             : "开始您的音智达市场自动化平台旅程，请点",
+        "login"             : "登录!"
+      }
+    }
+  },
+  "reset" : {
+    "header"                : "重设密码",
+    "new_password"          : "新密码",
+    "confirm_password"      : "确认密码",
+    "registered_email"      : "注册音智达市场自动化平台时所用的电子邮件",
+    "enter_email"           : "请在下面输入您的电子邮件",
+    "have_account"          : "已经有帐号？请 ",
+    "log_in"                : "在此登录",
+    "save"                  : "保存",
+    "send"                  : "重设密码",
+    "alerter": {
+      "email_sent"          : "请查收您的电子邮件，查看重置密码说明。",
+      "email_unregistered"  : "该电子邮件还未在音智达市场自动化平台注册",
+      "resetting": {
+        "succeed": {
+          "success"         : "密码已重置!点",
+          "here"            : "这里",
+          "log_in"          : "登录"
+        },
+        "failed"            : "重置密码时发生错误"
+      }
+    }
+  },
+  "navbar" : {
+    "activity"              : "微博",
+    "workspaces"            : "工作空间",
+    "scrapbooks"            : "剪贴板",
+    "people"                : "联系人",
+    "notifications"         : "消息",
+    "microblog": {
+      "sina": {
+        "authorize"         : "绑定",
+        "official"          : "官方帐号",
+        "personal"          : "个人帐号"
+      },
+      "sohu": {
+        "authorize"         : "绑定",
+        "official"          : "官方帐号",
+        "personal"          : "个人帐号"
+      },
+      "tencent": {
+        "authorize"         : "绑定",
+        "official"          : "官方帐号",
+        "personal"          : "个人帐号"
+      },
+      "netease": {
+        "authorize"         : "绑定",
+        "official"          : "官方帐号",
+        "personal"          : "个人帐号"
+      }
+    }
+  },
+  "session" : {
+    "edit_profile"          : "编辑个人档案",
+    "english"               : "英文",
+    "chinese"               : "中文",
+    "logout"                : "退出"
+  },
+  "heading" : {
+    "followers"             : "听众",
+    "following"             : "关注",
+    "users"                 : "联系人",
+    "workspaces"            : "工作空间",
+    "scrapbooks"            : "剪贴板",
+    "all"                   : "显示所有"
+  },
+  "action" : {
+    "search"                : "搜索...",
+    "delete"                : "删除",
+    "transfer"              : "传送",
+    "create"                : "建立",
+    "edit"                  : "编辑",
+    "update"                : "更新",
+    "confirm"               : "确定",
+    "cancel"                : "取消",
+    "post"                  : "发布",
+    "save"                  : "保存",
+    "close"                 : "关闭",
+    "reply"                 : "回复",
+    "forward"               : "转发",
+    "send"                  : "发送",
+    "attach"                : "附加文件",
+    "more"                  : "显示更多"
+  },
+  "counter" : {
+    "followers"             : "听众",
+    "following"             : "关注",
+    "updates"               : "微博"
+  },
+  "invitation" : {
+    "header"                : "邀请到音智达市场自动化平台",
+    "name"                  : "被邀请人姓名",
+    "email"                 : "被邀请人电子邮件",
+    "invite"                : "邀请到音智达市场自动化平台",
+    "alerter": {
+      "succeed": {
+        "inverter"          : "您已向 ",
+        "has_sent"          : " 发出邀请!"
+      }
+    }
+  },
+  "delete_modal" :{
+    "header"                : "提示",
+    "message"               : "确定删除此信息?"
+  },
+  "reply" : {
+    "text"                  : "您的回复...",
+    "save"                  : "回复"
+  },
+  "scrapbook" : {
+    "header"                : "剪贴板",
+    "create"                : "建立剪贴板",
+    "name"                  : "剪贴板名字",
+    "list"                  : "剪贴板",
+    "all"                   : "所有剪贴板",
+    "favorites"             : "收藏夹",
+    "drafts"                : "草稿",
+    "delete_message"        : "确定要删除该剪贴板?",
+    "alerter" : {
+      "new": {
+        "your_scrapbook"    : "剪贴板 ",
+        "created"           : " 已创建!点",
+        "here"              : "这里",
+        "enter"             : "进入"
+      },
+      "update": {
+        "succeed"           : "剪贴板已成功更新"
+      }
+    }
+  },
+  "scrap" : {
+    "text"                  : "您的想法... "
+  },
+  "status" : {
+    "header"                : "时间轴",
+    "text"                  : "最新状态?"
+  },
+  "profile": {
+    "header"                : "个人档案: ",
+    "workspaces"            : "工作空间 - ",
+    "followers"             : "听众 - ",
+    "following"             : "关注 - ",
+    "updates"               : "微博 - ",
+    "all"                   : "查看所有 ↣"
+  },
+  "workspace" : {
+    "header"                : "工作空间",
+    "create"                : "建立工作空间",
+    "name"                  : "工作空间名字",
+    "all"                   : "所有工作空间",
+    "own"                   : "您的工作空间",
+    "invited"               : "已获邀请",
+    "autoinvited"           : "已发送请求",
+    "accept_invitation"     : "接受工作空间邀请",
+    "delete_message"        : "确定删除此工作空间?",
+    "administrators": {
+      "header"              : "管理员列表",
+      "alerter": {
+        "demote": {
+          "succeed": {
+            "has_demoted"   : "已从管理员列表中移除!"
+          }
+        }
+      }
+    },
+    "collaborators": {
+      "header"              : "成员列表",
+      "modal": {
+        "remove" : {
+          "header"          : "提示",
+          "body"            : "确定从当前工作空间中移除该用户？"
+        }
+      },
+      "alerter": {
+        "promote": {
+          "succeed": {
+            "has_promoted"  : "已提升为管理员！"
+          }
+        }
+      }
+    },
+    "sidebar": {
+      "invite": {
+        "header"            : "邀请用户到此工作空间",
+        "modal" : {
+          "header"          : "邀请用户到工作空间",
+          "text"            : "请输入用户名"
+        }
+      },
+      "statistic" : {
+        "header"            : "统计",
+        "people"            : "成员",
+        "updates"           : "微博"
+      },
+      "administrator": {
+        "header"            : "管理员",
+        "link_all"          : "查看所有",
+        "modal" : {
+          "demote"          : "从管理员列表中移除"
+        }
+      },
+      "collaborator": {
+        "header"            : "成员",
+        "link_all"          : "查看所有",
+        "modal" : {
+          "promote"         : "提升为管理员"
+        },
+        "empty"             : "暂无成员"
+      }
+    },
+    "invitation": {
+      "invite"              : "邀请",
+      "join"                : "加入",
+      "state": {
+        "rejected"          : "已拒绝",
+        "accepted"          : "已接受",
+        "pending"           : "未响应"
+      },
+      "alerter": {
+        "inviting" : {
+          "succeed": {
+            "invited"         : "您已邀请 ",
+            "has_sent"        : " 加入当前工作空间！"
+          }
+        },
+        "accept": {
+          "succeed": {
+            "accepted"      : "您已接受该工作空间邀请。点",
+            "here"          : "这里",
+            "enter"         : "进入"
+          }
+        },
+        "reject": {
+          "succeed"         : "您已拒绝该工作空间邀请。"
+        }
+      }
+    },
+    "auto_invitation": {
+      "requested_access"    : "请求加入",
+      "state": {
+        "rejected"          : "已拒绝",
+        "accepted"          : "已接受",
+        "pending"           : "未响应"
+      }
+    },
+    "alerter" : {
+      "new": {
+        "your_workspace"    : "工作空间 ",
+        "created"           : " 已创建！点",
+        "here"              : "这里",
+        "enter"             : "进入"
+      },
+      "update": {
+        "succeed"           : "工作空间已成功更新"
+      }
+    }
+  },
+  "workspace_toolbar": {
+    "timeline"              : "时间轴",
+    "files"                 : "文件",
+    "invitations"           : "邀请状态",
+    "access_requests"       : "访问请求"
+  },
+  "stream" : {
+    "all"                   : "所有微博",
+    "conversations"         : "对话",
+    "workspaces"            : "工作空间",
+    "action_required"       : "待办事项",
+    "files"                 : "文件"
+  },
+  "calendar" : {
+    "title"                 : "主题",
+    "color"                 : "颜色"
+  },
+  "settings": {
+    "header"                : "编辑个人档案",
+    "change_avatar"         : "更换头像",
+    "first_name"            : "名",
+    "last_name"             : "姓",
+    "position"              : "职位",
+    "mobile"                : "手机",
+    "landline"              : "座机",
+    "fax"                   : "传真",
+    "alerter": {
+      "update" : {
+        "succeed"           : "您的信息已更新!",
+        "failed"            : "更新失败!"
+      }
+    }
+  },
+  "button": {
+    "user_relationship": {
+      "follower"            : "已关注",
+      "following"           : "关注",
+      "self"                : "您",
+      "none"                : "关注"
+    },
+    "workspace_relationship": {
+      "administrator"       : "进入",
+      "collaborator"        : "进入",
+      "none"                : "请求访问",
+      "autoinvited"         : "等待确认",
+      "invited"             : "接受邀请",
+      "rejected"            : "拒绝邀请"
+    },
+    "workspace": {
+      "auto_invitation": {
+        "accept"            : "接受",
+        "reject"            : "拒绝"
+      },
+      "all_users" : {
+        "self"              : "您",
+        "demote"            : "从管理员中移除",
+        "promote"           : "提升为管理员",
+        "remove"            : "从工作空间中移除"
+      }
+    },
+    "action": {
+      "delete"              : "删除",
+      "reply"               : "回复",
+      "collapse"            : "收起"
+    }
+  },
+  "appointment": {
+    "dialog": {
+      "title"               : "新建"
+    },
+    "title"                 : "标题",
+    "description"           : "描述"
+  },
+  "notification": {
+    "header"                : "消息列表",
+    "entity_admin"          : "系统管理员",
+    "you"                   : "你",
+    "yours"                 : "你的",
+    "read"                  : "已读",
+    "unread"                : "未读",
+    "date": {
+      "today"               : "今天",
+      "d0"                  : "星期天",
+      "d1"                  : "星期一",
+      "d2"                  : "星期二",
+      "d3"                  : "星期三",
+      "d4"                  : "星期四",
+      "d5"                  : "星期五",
+      "d6"                  : "星期六"
+    },
+    "polymap": {
+      "user"                : "用户",
+      "workspace"           : "工作空间",
+      "status::reply"       : "评论",
+      "status"              : "状态"
+    },
+    "action": {
+      "post"                : " 发表了 ",
+      "invite"              : " 邀请 ",
+      "join"                : " 已加入 ",
+      "remove"              : " 移除了 ",
+      "promote"             : " 提升 ",
+      "demote"              : " 下调 ",
+      "follow"              : " 收听了 ",
+      "workspace_request_access" : " 请求访问 "
+    },
+    "to": {
+      "default"             : " 到 ",
+      "workspace_invitation": " 加入 ",
+      "from"                : " 从 ",
+      "as"                  : " 成为 "
+    },
+    "workspace": {
+      "membership": {
+        "administrator"     : "管理员",
+        "collaborator"      : "普通成员"
+      },
+      "invitation": {
+        "request_failed"    : "请求发送失败",
+        "action": {
+          "decline"         : "拒绝",
+          "accept"          : "接受"
+        },
+        "state": {
+          "rejected"        : "已拒绝",
+          "accepted"        : "已接受",
+          "pending"         : "未响应",
+          "joined"          : "已加入",
+          "invitee_relationship": {
+            "administrator" : "管理员",
+            "collaborator"  : "成功",
+            "invited"       : "被邀请",
+            "autoinvited"   : "请求加入",
+            "none"          : "无"
+          }
+        }
+      }
+    }
+  }
+}
