@@ -1,8 +1,6 @@
-define ['backbone', 
-        'user/collection', 
-        'text!templates/user/register'
-], (Backbone, Users)->
+define ['backbone' 
+], (Backbone)->
   
   class UsersView extends Backbone.View
-    
-    render: ->
+
+

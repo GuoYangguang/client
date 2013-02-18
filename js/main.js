@@ -8,16 +8,17 @@ require.config({
     jquery: "libs/jquery",
     underscore: "libs/underscore",
     backbone: "libs/backbone",
-    pure: "libs/pure/pure",
+    pure: "libs/pure",
     jqueryUI: "libs/jquery-ui-1.8.22.custom/js/jquery-ui-1.8.22.custom.min"
   },
   shim: {
     underscore: {exports: "_"}, 
-    backbone: {deps: ["underscore", "jquery"], exports: "Backbone"}  
+    backbone: {deps: ["underscore", "jquery"], exports: "Backbone"},
+    pure: {deps: ["jquery"], exports: "Pure"}
   }
 }); 
 
-require(["cs!app"]);
+require(["pure", "cs!app"]);
   
 
 
