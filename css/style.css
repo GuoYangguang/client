@@ -97,3 +97,19 @@ li[data-state]{
   cursor: pointer;
   display: none;
 }
+
+.login{
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+.register{
+  margin-top: 10px;
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+  display: none; 
+}
+
+

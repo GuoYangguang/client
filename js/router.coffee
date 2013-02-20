@@ -1,10 +1,20 @@
-define ['backbone'], (Backbone)->
+define ['backbone', 
+        'jquery',
+        'cs!session/model',
+        'cs!session/model_view' 
+], (Backbone, $, Session, SessionView)->
   
   class Router extends Backbone.Router
 
     routes: {
-      '': 'test' 
+      '': 'boards',
+      'login': 'login'
     }
+    
+    boards: ->
 
-    test: ->
-      console.log 'hello'
+    login: ->
+      session = new Session()
+      sessionView = new SessionView(model: session)
+      $('#yield').html(sessionView.el)
+
