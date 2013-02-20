@@ -44,4 +44,5 @@ define [
     changeCallback: ->
       @model.unset('user', {silent: true})
       @$el.slideUp()
+      @$el.find('p input').val('')
 
