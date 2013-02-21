@@ -1,7 +1,7 @@
 define ['backbone', 
         'jquery',
         'cs!session/model',
-        'cs!session/model_view' 
+        'cs!session/model_view'
 ], (Backbone, $, Session, SessionView)->
   
   class Router extends Backbone.Router

@@ -42,7 +42,8 @@ define [
       helper.dealErrors('.register', xhr)
 
     changeCallback: ->
-      @model.unset('user', {silent: true})
+      #avoid :put request if user create account again
+      @model.clear({silent: true})
       @$el.slideUp()
       @$el.find('p input').val('')
 
