@@ -7,8 +7,20 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
 
       status = response.status
       switch status
+        when 401
+          window.router.navigate '/login', {trigger: true} 
+        
+        when 403
+          errorsObj = {"errors": "Not Allowed."}
+          directives = {"span": "errors"}
+          htmlWithData = this.errorsTemplate.render(errorsObj, directives)
+          if before
+            $(showSelector).before(htmlWithData)
+          else
+            $(showSelector).after(htmlWithData)
+
         when 404
-          errorsObj = {"errors": "not allowed or resources not exist."}
+          errorsObj = {"errors": "Resources not exist."}
           directives = {"span": "errors"}
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
           if before
@@ -18,10 +30,7 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
            
         when 400
           responseText = JSON.parse(response.responseText)
-          errorsObj = {"errors": new Array()}
-          for key, value of responseText.errors
-            for e in value by 1
-              errorsObj.errors.push e
+          errorsObj = {"errors": responseText.errors}
           directives = {
             "li": {
               "error<-errors": {

@@ -9,27 +9,26 @@ define [
   
   class SessionView extends Backbone.View
     
-    className: 'login'
+    className: 'session-view'
 
     initialize: (options)->
       @$el.html sessionHtml
-      user = new User()
-      @userView = new UserView(model: user)
+      @model.bind('change', @changeCallback, @)
 
     events: {
-      'click #register-btn1': 'displayRegister', 
-      'click #login-btn': 'login'
+      'click #user-view-btn1': 'userView', 
+      'click #session-view-btn': 'createSession'
     }
     
-    login: ->
-      email = @$el.find('input[name="login-email"]').val()
-      password = @$el.find('input[name="login-password"]').val()
-      loginData = {
+    createSession: ->
+      email = @$el.find('input[name="session-view-email"]').val()
+      password = @$el.find('input[name="session-view-password"]').val()
+      sessionData = {
         email: email,
         password: password
       }
       @model.save(
-        {login: loginData},
+        {session: sessionData},
         {
           wait: true, 
           success: this.successCreate,
@@ -39,12 +38,19 @@ define [
     
     successCreate: (model, response, options)->
       $('.errors').remove()    
-  
+      window.router.navigate '', {trigger: true}
+
     errorCreate: (model, xhr, options)->
       $('.errors').remove()
       helper = new Helper()
-      helper.dealErrors('.login', xhr)
+      helper.dealErrors('.session-view', xhr)
+    
+    changeCallback: ->
+      @model.clear {silent: true}
+      @remove()
 
-    displayRegister: ->
-      @$el.after(@userView.el)
-      @userView.$el.slideDown()
+    userView: ->
+      user = new User()
+      userView = new UserView(model: user)
+      @$el.after(userView.el)
+      userView.$el.slideDown()

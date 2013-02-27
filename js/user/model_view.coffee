@@ -2,26 +2,26 @@ define [
   'backbone',
   'jquery', 
   'cs!helper',
-  'text!templates/user/register.html'
-], (Backbone, $, Helper, registerHtml)->
+  'text!templates/user/user.html'
+], (Backbone, $, Helper, userHtml)->
 
   class UserView extends Backbone.View
    
-    className: 'register'
+    className: 'user-view'
 
     initialize: (options)->
-      @$el.html(registerHtml)
+      @$el.html(userHtml)
       @model.bind('change', @changeCallback, @)
 
     events: {
-      'click #register-btn2': 'createUser'
+      'click #user-view-btn2': 'createUser'
     }
 
     createUser: ->
       userData = {
-        email: @$el.find('input[name="register-email"]').val(), 
-        password: @$el.find('input[name="register-password"]').val(), 
-        password_confirmation: @$el.find('input[name="register-confirmation"]').val()
+        email: @$el.find('input[name="user-view-email"]').val(), 
+        password: @$el.find('input[name="user-view-password"]').val(), 
+        password_confirmation: @$el.find('input[name="user-view-confirmation"]').val()
       }
 
       @model.save(
@@ -39,11 +39,12 @@ define [
     errorCreate: (model, xhr, options)->
       $('.errors').remove() 
       helper = new Helper()
-      helper.dealErrors('.register', xhr)
+      helper.dealErrors('.user-view', xhr)
 
     changeCallback: ->
-      #avoid :put request if user create account again
       @model.clear({silent: true})
-      @$el.slideUp()
-      @$el.find('p input').val('')
+      userView = @
+      @$el.slideUp 'slow', -> 
+        userView.remove()
+        
 

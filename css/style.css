@@ -98,13 +98,13 @@ li[data-state]{
   display: none;
 }
 
-.login{
+.session-view{
   width: 30%;
   padding: 10px;
   background-color: #eee;
 }
 
-.register{
+.user-view{
   margin-top: 10px;
   width: 30%;
   padding: 10px;
