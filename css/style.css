@@ -98,18 +98,17 @@ li[data-state]{
   display: none;
 }
 
-.session-view{
+#session-view{
   width: 30%;
   padding: 10px;
   background-color: #eee;
 }
 
-.user-view{
+#user-view{
   margin-top: 10px;
   width: 30%;
   padding: 10px;
   background-color: #eee;
-  display: none; 
 }
 
 

@@ -5,7 +5,8 @@ require ['jquery',
 ($, Backbone, Router) ->
 
   $(document).ready ->
-    window.router = new Router()
+    window.Clienting = {}
+    window.Clienting.router = new Router()
     Backbone.history.start({pushState: true, root: '/w/'})
        
     

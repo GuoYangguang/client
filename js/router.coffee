@@ -1,25 +1,38 @@
 define ['backbone', 
         'jquery',
         'cs!session/model',
-        'cs!session/model_view',
-        'cs!workspace/collection',
-        'cs!workspace/collection_view'
-], (Backbone, $, Session, SessionView, Workspaces, WorkspacesView)->
+        'cs!session/view.model',
+        'cs!user/model',
+        'cs!user/view.model'
+], (Backbone, $, Session, SessionView, User, UserView)->
   
   class Router extends Backbone.Router
-
-    routes: {
-      '': 'boards',
-      'login': 'login'
-    }
     
-    boards: ->
-      workspaces = new Workspaces()
-      workspacesView = new WorkspacesView({collection: workspaces})
-      workspacesView.fetchWorkspaces()
+    initialize: (options)->
+    
+    routes: {
+      '': 'home',
+      'login': 'session',
+      'signup': 'createUser'
+    }
+   
+    clearView: (view)->
+      if @currentView?
+        @currentView.off()
+        @currentView.remove()
+      @currentView = view 
+      
+    home: ->
+      console.log 'logged'
 
-    login: ->
+    session: ->
       session = new Session()
       sessionView = new SessionView(model: session)
-      $('#yield').html(sessionView.el)
-
+      @clearView(sessionView)
+      $('#yield').append(sessionView.el)
+    
+    createUser: ->
+      user = new User()
+      userView = new UserView(model: user)     
+      @clearView(userView)
+      $('#yield').append(userView.el)
