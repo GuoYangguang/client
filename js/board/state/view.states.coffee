@@ -1,10 +1,10 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "cs!workspace/board/state/model_view",
-        "cs!workspace/board/story/collection",
-        "cs!workspace/board/story/collection_view",
-        "text!templates/workspace/board/state/states.html",
+        "cs!board/state/view.state",
+        "cs!board/story/stories",
+        "cs!board/story/view.stories",
+        "text!templates/board/state/states.html",
         "cs!helper"
        ], 
 ($, _, Backbone, StateView, Stories, StoriesView, statesHtml, Helper) ->

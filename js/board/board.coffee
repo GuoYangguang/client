@@ -1,4 +1,4 @@
-define ["underscore", "backbone"], ( _, Backbone) ->
+define ["backbone"], (Backbone) ->
   class Board extends Backbone.Model
          
 

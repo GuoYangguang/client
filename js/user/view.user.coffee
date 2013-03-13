@@ -2,15 +2,15 @@ define [
   'backbone',
   'jquery', 
   'cs!helper',
-  'text!templates/user/user.html'
-], (Backbone, $, Helper, userHtml)->
+  'text!templates/user/new.html'
+], (Backbone, $, Helper, newHtml)->
 
   class UserView extends Backbone.View
    
     id: 'user-view'
 
     initialize: (options)->
-      @$el.html(userHtml)
+      @$el.html(newHtml)
       @listenTo(@model, 'change', @changeCallback)
 
     events: {

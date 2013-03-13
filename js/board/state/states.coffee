@@ -1,6 +1,6 @@
 define ["underscore", 
         "backbone",
-        "cs!workspace/board/state/model"
+        "cs!board/state/state"
        ], 
 (_, Backbone, State)->
 
@@ -13,7 +13,7 @@ define ["underscore",
     model: State
 
     url: -> 
-      "/workspaces/#{@workspaceId}/boards/#{@boardId}/states"
+      "/boards/#{@boardId}/states"
 
     comparator: (state)->
       state.get("created_at")

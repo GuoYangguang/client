@@ -1,7 +1,7 @@
 define [
         "underscore", 
         "backbone",
-        "cs!workspace/board/story/model"
+        "cs!board/story/story"
        ], 
 (_, Backbone, Story)->
   
@@ -15,6 +15,6 @@ define [
     model: Story
 
     url: ->
-      "/workspaces/#{@workspaceId}/boards/#{@boardId}/states/#{@stateId}/stories"
+      "/boards/#{@boardId}/states/#{@stateId}/stories"
 
 

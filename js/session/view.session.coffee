@@ -2,16 +2,16 @@ define [
   'backbone',
   'jquery',
   'underscore',
-  'text!templates/session/session.html',
+  'text!templates/session/new.html',
   'cs!helper'
-], (Backbone, $, _, sessionHtml, Helper)->
+], (Backbone, $, _, newHtml, Helper)->
   
   class SessionView extends Backbone.View
     
     id: 'session-view'
 
     initialize: (options)->
-      @$el.html sessionHtml
+      @$el.html newHtml
       @listenTo(@model, 'change', @changeCallback)
       _.bindAll(@, 'successCreate', 'errorCreate')
 

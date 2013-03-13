@@ -2,13 +2,12 @@ define [
         "jquery",
         "underscore",
         "backbone",
-        "cs!workspace/board/story/model_view",
-        "cs!workspace/collaborator/collection",
-        "text!templates/workspace/board/story/stories.html",
-        "text!templates/workspace/board/story/dialog.html",
+        "cs!board/story/view.story",
+        "text!templates/board/story/stories.html",
+        "text!templates/board/story/dialog.html",
         "cs!helper"
        ],
-($, _, Backbone, StoryView, Collaborators, storiesHtml, dialogHtml, Helper)->
+($, _, Backbone, StoryView, storiesHtml, dialogHtml, Helper)->
   
   class StoriesView extends Backbone.View
     tagName: "div"

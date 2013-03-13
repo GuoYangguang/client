@@ -1,8 +1,8 @@
 define ["jquery", 
         "underscore", 
         "backbone", 
-        "text!templates/workspace/board/state/state.html",
-        "text!templates/workspace/board/state/edit.html",
+        "text!templates/board/state/state.html",
+        "text!templates/board/state/edit.html",
         "cs!helper"
        ], 
 ($, _, Backbone, stateHtml, editHtml, Helper) ->

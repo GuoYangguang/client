@@ -1,10 +1,12 @@
 define ['backbone', 
         'jquery',
-        'cs!session/model',
-        'cs!session/view.model',
-        'cs!user/model',
-        'cs!user/view.model'
-], (Backbone, $, Session, SessionView, User, UserView)->
+        'cs!session/session',
+        'cs!session/view.session',
+        'cs!user/user',
+        'cs!user/view.user',
+        'cs!board/boards', 
+        'cs!board/view.boards'
+], (Backbone, $, Session, SessionView, User, UserView, Boards, BoardsView)->
   
   class Router extends Backbone.Router
     
@@ -23,16 +25,19 @@ define ['backbone',
       @currentView = view 
       
     home: ->
-      console.log 'logged'
+      boards = new Boards()
+      boardsView = new BoardsView({collection: boards})
+      @clearView(boardsView)
+      boardsView.fetchBoards()
 
     session: ->
       session = new Session()
       sessionView = new SessionView(model: session)
       @clearView(sessionView)
-      $('#yield').append(sessionView.el)
+      $('#content').html(sessionView.el)
     
     createUser: ->
       user = new User()
       userView = new UserView(model: user)     
       @clearView(userView)
-      $('#yield').append(userView.el)
+      $('#content').html(userView.el)

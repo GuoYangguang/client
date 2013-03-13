@@ -1,13 +1,12 @@
-define ["jquery", 
-        "underscore", 
-        "backbone", 
-        "cs!helper", 
-        "cs!workspace/board/state/collection", 
-        "cs!workspace/board/state/collection_view",
-        "text!templates/workspace/board/board.html", 
-        "text!templates/workspace/board/show.html" 
-       ],
-($, _, Backbone, Helper, States, StatesView, boardHtml, showBoardHtml) ->
+define [
+  "jquery", 
+  "backbone", 
+  "cs!helper", 
+  "cs!board/state/states", 
+  "cs!board/state/view.states",
+  "text!templates/board/board.html", 
+  "text!templates/board/show.html" 
+],($, Backbone, Helper, States, StatesView, boardHtml, showBoardHtml) ->
 
   class BoardView extends Backbone.View 
     tagName: "li"
