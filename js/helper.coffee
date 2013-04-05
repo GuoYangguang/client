@@ -3,30 +3,24 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
     
     errorsTemplate: $(errorsHtml)
 
-    dealErrors: (showSelector, response, before=true)-> 
-
+    dealErrors: (showSelector, errorsId, response)-> 
+      this.errorsTemplate.attr('id', errorsId)
       status = response.status
       switch status
         when 401
-          window.router.navigate '/login', {trigger: true} 
+          window.Clienting.router.navigate '/login', {trigger: true} 
         
         when 403
           errorsObj = {"errors": "Not Allowed."}
           directives = {"span": "errors"}
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
-          if before
-            $(showSelector).before(htmlWithData)
-          else
-            $(showSelector).after(htmlWithData)
+          $(showSelector).before(htmlWithData)
 
         when 404
           errorsObj = {"errors": "Resources not exist."}
           directives = {"span": "errors"}
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
-          if before
-            $(showSelector).before(htmlWithData)
-          else
-            $(showSelector).after(htmlWithData)
+          $(showSelector).before(htmlWithData)
            
         when 400
           responseText = JSON.parse(response.responseText)
@@ -39,8 +33,5 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
             }
           }
           htmlWithData = this.errorsTemplate.render(errorsObj, directives)
-          if before
-            $(showSelector).before(htmlWithData)
-          else
-            $(showSelector).after(htmlWithData)
+          $(showSelector).before(htmlWithData)
             

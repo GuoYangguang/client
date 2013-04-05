@@ -7,11 +7,11 @@ define [
 
   class UserView extends Backbone.View
    
-    className: 'user-view'
+    id: 'user-view'
 
     initialize: (options)->
       @$el.html(userHtml)
-      @model.bind('change', @changeCallback, @)
+      @listenTo(@model, 'change', @changeCallback)
 
     events: {
       'click #user-view-btn2': 'createUser'
@@ -19,9 +19,10 @@ define [
 
     createUser: ->
       userData = {
-        email: @$el.find('input[name="user-view-email"]').val(), 
-        password: @$el.find('input[name="user-view-password"]').val(), 
-        password_confirmation: @$el.find('input[name="user-view-confirmation"]').val()
+        email: @$el.find('input[name="email"]').val(), 
+        name: @$el.find('input[name="name"]').val(),
+        password: @$el.find('input[name="password"]').val(), 
+        password_confirmation: @$el.find('input[name="confirmation"]').val()
       }
 
       @model.save(
@@ -34,17 +35,15 @@ define [
       )
     
     successCreate: (model, response, options)->
-      $('.errors').remove() 
+      $('#user-view-errors').remove() 
+      window.Clienting.router.navigate('/login', {trigger: true})
 
     errorCreate: (model, xhr, options)->
-      $('.errors').remove() 
+      $('#user-view-errors').remove() 
       helper = new Helper()
-      helper.dealErrors('.user-view', xhr)
+      helper.dealErrors('#user-view', 'user-view-errors', xhr)
 
     changeCallback: ->
-      @model.clear({silent: true})
-      userView = @
-      @$el.slideUp 'slow', -> 
-        userView.remove()
+      @model.clear(silent: true)
         
 
