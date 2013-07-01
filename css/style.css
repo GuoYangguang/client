@@ -2,27 +2,54 @@ body{
   margin: 0;  
 }
 
-.collaborators{
+ul{
+  list-style-type: none;
+}
+
+#session-view{
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+#user-view{
+  margin-top: 10px;
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+ul.logged-menu, ul.logout-menu{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ul.logged-menu li, ul.logout-menu li{
+  float: left;
+  margin-right: 5%;
+  cursor: pointer;
+}
+/*.collaborators{
   margin-left: 500px;
+}
+
+#boards-view-more{
+  cursor: pointer;
 }
 
 #fetch-boards{
   cursor: pointer;
 }
 
-.board{
+.board-view{
   padding: 5px;
 }
 
-ul{
-  list-style-type: none;
-}
-
-.board-name{
+.board-view-name{
   cursor: pointer;
 }
 
-.delete-board{
+.board-view-del{
   display: none;
   cursor: pointer;
   margin-left: 10%;
@@ -66,10 +93,6 @@ li[data-state]{
   display: inline;
 }
 
-#boards-view-more{
-  cursor: pointer;
-}
-
 .new-story{
   cursor: pointer;
 }
@@ -99,24 +122,8 @@ li[data-state]{
   margin-left: 10px;
   cursor: pointer;
   display: none;
-}
+}*/
 
-#session-view{
-  width: 30%;
-  padding: 10px;
-  background-color: #eee;
-}
 
-#user-view{
-  margin-top: 10px;
-  width: 30%;
-  padding: 10px;
-  background-color: #eee;
-}
-
-#top-menu{
-  background-color: #eee;
-  margin-bottom: 50px;
-}
 
 

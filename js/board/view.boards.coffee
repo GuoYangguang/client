@@ -13,7 +13,7 @@ define [
     initialize: ->
       @$el.html(boardsHtml)
       @listenTo(@collection, "reset", @render)
-      @listenTo(@collection, "add", @showBoard)
+      @listenTo(@collection, "add", @addBoard)
       #_.bindAll(@, successFetch, errorFetch) 
 
     id: "boards-view"

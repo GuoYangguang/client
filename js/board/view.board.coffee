@@ -6,39 +6,42 @@ define [
   "cs!board/state/view.states",
   "text!templates/board/board.html", 
   "text!templates/board/show.html" 
-],($, Backbone, Helper, States, StatesView, boardHtml, showBoardHtml) ->
+],($, Backbone, Helper, States, StatesView, boardHtml, showHtml) ->
 
   class BoardView extends Backbone.View 
-    tagName: "li"
 
     initialize: (options)->
-      this.model.bind("destroy", this.destroyCal, this)
+      @listenTo(@model, "destroy", @destroyCal)
+      @$el.html(boardHtml)
+
+    tagName: "li"
+    className: 'board-view'
 
     events: {
-      "mouseover .board": "showMenu",
-      "mouseout .board": "hideMenu",
-      "click .board-name": "showBoard",
-      "click .delete-board": "confirm"
+      "mouseover": "showMenu",
+      "mouseout": "hideMenu",
+      "click .board-view-name": "showBoard",
+      "click .board-view-del": "confirm"
     }
 
     showMenu: ->
-      $(this.el).find(".board").addClass("color-board").
-        find("span.delete-board").show()
+      @$.el.addClass("color-board").
+        find("span.board-view-del").show()
     
     hideMenu: ->
-      $(this.el).find(".board").removeClass("color-board")
-        .find("span.delete-board").hide()
+      @$.el.removeClass("color-board")
+        .find("span.board-view-del").hide()
 
     showBoard: ->
-      this.model.fetch({wait: true, 
-      success: this.successFetch, error: this.errorFetch})
+      @model.fetch({wait: true, 
+      success: @successFetch, error: @errorFetch})
     
-    successFetch: (model, response)->
+    successFetch: (model, response, options)->
       $(".errors").remove()
       
       data = model.toJSON()
       directives = {"h3": "name", "h3@data-board": "id"}
-      htmlWithData = $(showBoardHtml).render(data, directives)
+      htmlWithData = $(showHtml).render(data, directives)
       $("#boards").html(htmlWithData)
       
       workspaceId = $("#workspace-name").attr("data-workspace")
@@ -46,18 +49,18 @@ define [
       statesView = new StatesView({collection: states})
       statesView.fetchStates()
 
-    errorFetch: (model, response)->
+    errorFetch: (model, xrh, options)->
       $(".errors").remove()
       helper = new Helper()
       helper.dealErrors("#list-boards", response)
     
     confirm: ->
       val = confirm("Are you sure to delete it?")
-      this.deleteBoard() if val
+      @deleteBoard() if val
 
     deleteBoard: ->
-      this.model.destroy({wait: true, 
-      success: this.successDel, error: this.errorDel})
+      @model.destroy({wait: true, 
+      success: @successDel, error: @errorDel})
 
     successDel: (model, response)-> 
       $(".errors").remove()
@@ -68,11 +71,10 @@ define [
       helper.dealErrors("#list-boards", response)      
    
     destroyCal: -> 
-      this.remove()
+      @remove()
 
     render: -> 
       data = this.model.toJSON()
-      directives = {"span.board-name": "name"}
-      htmlWithData = $(boardHtml).render(data, directives)
-      this.$el.html(htmlWithData)
+      directives = {"span.board-view-name": "name"}
+      @$el.render(data, directives)
       this
