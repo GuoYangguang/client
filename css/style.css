@@ -1,0 +1,129 @@
+body{
+  margin: 0;  
+}
+
+ul{
+  list-style-type: none;
+}
+
+#session-view{
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+#user-view{
+  margin-top: 10px;
+  width: 30%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+ul.logged-menu, ul.logout-menu{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ul.logged-menu li, ul.logout-menu li{
+  float: left;
+  margin-right: 5%;
+  cursor: pointer;
+}
+/*.collaborators{
+  margin-left: 500px;
+}
+
+#boards-view-more{
+  cursor: pointer;
+}
+
+#fetch-boards{
+  cursor: pointer;
+}
+
+.board-view{
+  padding: 5px;
+}
+
+.board-view-name{
+  cursor: pointer;
+}
+
+.board-view-del{
+  display: none;
+  cursor: pointer;
+  margin-left: 10%;
+}
+
+.color-board{
+  background-color: #eee;
+}
+
+#states-scroller{
+  width: 600px;
+  height: 550px;
+  overflow: auto;
+}
+
+
+#states-stories{
+ width:20000px; 
+ list-style: none;
+}
+
+li[data-state]{
+  float: left;
+  width: 200px;
+  min-height: 500px;
+  margin-right: 10px;
+  background-color: #eee;
+  text-align: center;
+}
+
+.delete-state{
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.state-name{
+  cursor: pointer;
+}
+
+.state-name form {
+  display: inline;
+}
+
+.new-story{
+  cursor: pointer;
+}
+
+.stories{
+  width: 90%;
+  margin-left: 5%;
+}
+
+.stories ul{
+  padding: 0;
+  min-height: 350px;
+}
+
+.story p{
+  border: 3px solid gray;
+  background-color: white;
+  padding: 3px;
+  text-align: left;
+}
+
+.story-name{
+  cursor: pointer;
+}
+
+.delete-story{
+  margin-left: 10px;
+  cursor: pointer;
+  display: none;
+}*/
+
+
+
+
