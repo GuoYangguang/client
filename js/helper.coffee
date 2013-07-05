@@ -9,7 +9,7 @@ define ["jquery", "text!templates/errors.html"], ($, errorsHtml) ->
       status = response.status
       switch status
         when 401
-          window.Clienting.router.navigate '/login', {trigger: true} 
+          window.Clienting.router.navigate '', {trigger: true} 
         
         when 403
           errorsObj = {"errors": "Not Allowed."}

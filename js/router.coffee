@@ -1,16 +1,9 @@
 define [
   'backbone', 
   'jquery',
-  'cs!menu/view.logged.menu',
-  'cs!menu/view.logout.menu',
-  'cs!session/session',
-  'cs!session/view.session',
-  'cs!user/user',
-  'cs!user/view.user',
-  'cs!board/boards', 
-  'cs!board/view.boards'
-], (Backbone, $, LoggedMenuView, LogoutMenuView, Session, SessionView, User, 
-    UserView, Boards, BoardsView)->
+  'cs!token_user/token_user',
+  'cs!token_user/token_user.view'
+], (Backbone, $, TokenUser, TokenUserView)->
   
   class Router extends Backbone.Router
     
@@ -18,8 +11,6 @@ define [
     
     routes: {
       '': 'home',
-      'login': 'session',
-      'signup': 'createUser'
     }
    
     clearView: (view)->
@@ -29,23 +20,8 @@ define [
       @currentView = view 
       
     home: ->
-      boards = new Boards()
-      boardsView = new BoardsView({collection: boards})
-      @clearView(boardsView)
-      boardsView.fetchBoards()
-      session = new Session()
-      loggedMenuView = new LoggedMenuView(model: session)
-      $('#content').html(loggedMenuView.el).append(boardsView.el)
+      tokenUser = new TokenUser()
+      tokenUserView = new TokenUserView(model: tokenUser)
+      #$('#content').html(loggedMenuView.el).append(boardsView.el)
 
-    session: ->
-      session = new Session()
-      sessionView = new SessionView(model: session)
-      @clearView(sessionView)
-      logoutMenuView = new LogoutMenuView()
-      $('#content').append(logoutMenuView.el).append(sessionView.el)
     
-    createUser: ->
-      user = new User()
-      userView = new UserView(model: user)     
-      @clearView(userView)
-      $('#content').append(userView.el)
